@@ -20,14 +20,29 @@ gsap.registerPlugin(ScrollTrigger);
 const ldFill = document.getElementById('ld-fill');
 const ldNum  = document.getElementById('ld-num');
 const ldEl   = document.getElementById('loader');
-let pct = 0;
-const ldIv = setInterval(() => {
-  pct += Math.floor(Math.random() * 9) + 3;
-  if (pct >= 100) { pct = 100; clearInterval(ldIv); }
-  ldFill.style.width = pct + '%';
-  ldNum.textContent  = String(pct).padStart(3,'0');
-  if (pct === 100) setTimeout(() => { gsap.to(ldEl,{ opacity:0, duration:.55, ease:'power2.inOut', onComplete(){ ldEl.style.display='none'; }}); boot(); }, 250);
-}, 38);
+
+function dismissLoader() {
+  gsap.to(ldEl, { opacity:0, duration:.45, ease:'power2.inOut', onComplete(){ ldEl.style.display='none'; }});
+  boot();
+}
+
+if (sessionStorage.getItem('snb-v')) {
+  ldEl.style.display = 'none';
+  boot();
+} else {
+  sessionStorage.setItem('snb-v', '1');
+  let pct = 0;
+  let pageLoaded = document.readyState === 'complete';
+  if (!pageLoaded) window.addEventListener('load', () => { pageLoaded = true; });
+  const ldIv = setInterval(() => {
+    const cap = pageLoaded ? 100 : 88;
+    pct += Math.floor(Math.random() * 13) + 6;
+    if (pct > cap) pct = cap;
+    ldFill.style.width = pct + '%';
+    ldNum.textContent  = String(pct).padStart(3,'0');
+    if (pct >= 100) { clearInterval(ldIv); setTimeout(dismissLoader, 200); }
+  }, 28);
+}
 
 /* ── CURSOR (desktop only) ── */
 if (window.matchMedia('(pointer:fine)').matches) {
@@ -49,7 +64,7 @@ document.getElementById('footer-year').textContent = new Date().getFullYear();
 gsap.to('#progress',{ scaleX:1, ease:'none', scrollTrigger:{ scrub:.3, start:'top top', end:'bottom bottom' }});
 
 function boot() {
-  setTimeout(startCreativeRoll, 4000);
+  setTimeout(startCreativeRoll, 1500);
 
   /* Click on CREATIVE triggers the roll immediately */
   document.getElementById('creative-h2').addEventListener('click', () => {
@@ -627,4 +642,5 @@ document.querySelectorAll('.ftab').forEach(tab => {
   } else {
     window.addEventListener('resize', scaleAll);
   }
+  scaleAll();
 })();
