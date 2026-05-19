@@ -1863,22 +1863,22 @@
         <input type="hidden" name="redirect" value="false" />
         <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off" />
 
-        <input type="text" name="name" placeholder="Your name" required
+        <input type="text" name="name" autocomplete="name" placeholder="Your name" required
           class="bg-transparent border-b pb-3 text-sm text-white outline-none transition-colors"
           style="border-color:rgba(255,255,255,.13);color:#fff;"
           onfocus="this.style.borderColor='rgba(255,255,255,.45)'" onblur="this.style.borderColor='rgba(255,255,255,.13)'"
         />
-        <input type="email" name="email" placeholder="Email address" required
+        <input type="email" name="email" autocomplete="email" placeholder="Email address" required
           class="bg-transparent border-b pb-3 text-sm text-white outline-none transition-colors"
           style="border-color:rgba(255,255,255,.13);color:#fff;"
           onfocus="this.style.borderColor='rgba(255,255,255,.45)'" onblur="this.style.borderColor='rgba(255,255,255,.13)'"
         />
-        <input type="text" name="project_type" placeholder="Project type (Web / App / Brand / Print…)"
+        <input type="text" name="project_type" autocomplete="off" placeholder="Project type (Web / App / Brand / Print…)"
           class="bg-transparent border-b pb-3 text-sm text-white outline-none transition-colors"
           style="border-color:rgba(255,255,255,.13);color:#fff;"
           onfocus="this.style.borderColor='rgba(255,255,255,.45)'" onblur="this.style.borderColor='rgba(255,255,255,.13)'"
         />
-        <textarea name="message" rows="3" placeholder="Tell us about your project" required
+        <textarea name="message" autocomplete="off" rows="3" placeholder="Tell us about your project" required
           class="bg-transparent border-b pb-3 text-sm text-white outline-none transition-colors resize-none"
           style="border-color:rgba(255,255,255,.13);color:#fff;"
           onfocus="this.style.borderColor='rgba(255,255,255,.45)'" onblur="this.style.borderColor='rgba(255,255,255,.13)'"
