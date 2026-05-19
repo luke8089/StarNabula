@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Block crawling of non-content assets
+Disallow: /.claude/
+Disallow: /.git/
+
+# Crawl delay for bots that support it
+Crawl-delay: 10
+
+# Sitemaps
+Sitemap: https://starnabula.tech/sitemap.xml

@@ -1,0 +1,26 @@
+{
+  "name": "SpaceBridge Creative Studio",
+  "short_name": "SpaceBridge",
+  "description": "Web design, mobile apps, branding, graphic design & print — Nairobi, Kenya.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080809",
+  "theme_color": "#080809",
+  "orientation": "any",
+  "lang": "en-KE",
+  "categories": ["design", "business", "productivity"],
+  "icons": [
+    {
+      "src": "images/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
