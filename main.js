@@ -32,15 +32,17 @@ if (sessionStorage.getItem('snb-v')) {
 } else {
   sessionStorage.setItem('snb-v', '1');
   let pct = 0;
-  let pageLoaded = document.readyState === 'complete';
-  if (!pageLoaded) window.addEventListener('load', () => { pageLoaded = true; });
+  const ldStart = Date.now();
   const ldIv = setInterval(() => {
-    const cap = pageLoaded ? 100 : 88;
     pct += Math.floor(Math.random() * 13) + 6;
-    if (pct > cap) pct = cap;
+    if (pct > 100) pct = 100;
     ldFill.style.width = pct + '%';
     ldNum.textContent  = String(pct).padStart(3,'0');
-    if (pct >= 100) { clearInterval(ldIv); setTimeout(dismissLoader, 200); }
+    if (pct >= 100) {
+      clearInterval(ldIv);
+      const wait = Math.max(200, 500 - (Date.now() - ldStart));
+      setTimeout(dismissLoader, wait);
+    }
   }, 28);
 }
 
