@@ -31,19 +31,10 @@ if (sessionStorage.getItem('snb-v')) {
   boot();
 } else {
   sessionStorage.setItem('snb-v', '1');
-  let pct = 0;
-  const ldStart = Date.now();
-  const ldIv = setInterval(() => {
-    pct += Math.floor(Math.random() * 13) + 6;
-    if (pct > 100) pct = 100;
-    ldFill.style.width = pct + '%';
-    ldNum.textContent  = String(pct).padStart(3,'0');
-    if (pct >= 100) {
-      clearInterval(ldIv);
-      const wait = Math.max(200, 500 - (Date.now() - ldStart));
-      setTimeout(dismissLoader, wait);
-    }
-  }, 28);
+  ldFill.style.transition = 'width 0.14s linear';
+  ldFill.style.width = '100%';
+  ldNum.textContent = '100';
+  setTimeout(dismissLoader, 180);
 }
 
 /* ── CURSOR (desktop only) ── */
