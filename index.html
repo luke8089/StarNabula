@@ -791,6 +791,14 @@
 
     /* Inline white bg dividers (hero visual stats separators stay untouched) */
     [data-theme="light"] #hv-stats [style*="background:rgba(255,255,255,"] { background:rgba(255,255,255,.08) !important; }
+
+    /* Hero section — grey background instead of cream/white */
+    [data-theme="light"] #hero { background: #c4c5c7 !important; }
+
+    /* Hero-visual panel stays dark — force all its text white so it remains readable */
+    [data-theme="light"] #hero-visual { color: rgba(255,255,255,.9); }
+    /* Prevent the global #hero inline-color override from darkening hero-visual text */
+    [data-theme="light"] #hero-visual [style*="color:rgba(255,255,255,"] { color: inherit !important; }
   </style>
 </head>
 <body>
