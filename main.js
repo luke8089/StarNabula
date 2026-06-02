@@ -37,6 +37,52 @@ if (sessionStorage.getItem('snb-v')) {
   setTimeout(dismissLoader, 180);
 }
 
+/* ── FEATURED WORK ROTATION ── */
+(function() {
+  var projects = [
+    {
+      img: 'images/projects/covercloud.jpeg',
+      alt: 'Cover Cloud Limited',
+      href: 'https://www.covercloudlimited.com/',
+      heroLabel: 'Cover Cloud Limited',
+      smallLabel: 'Cover Cloud'
+    },
+    {
+      img: 'images/projects/click-and-go.jpeg',
+      alt: 'Click and Go',
+      href: 'https://clickandgoauto.com/',
+      heroLabel: 'Click and Go',
+      smallLabel: 'Click and Go'
+    }
+  ];
+
+  var key = 'snb-work-lead';
+  var last = localStorage.getItem(key);
+  var leadIdx = last === '1' ? 0 : 1;
+  localStorage.setItem(key, String(leadIdx));
+
+  var hero  = projects[leadIdx];
+  var small = projects[1 - leadIdx];
+
+  var heroImg   = document.getElementById('work-hero-img');
+  var heroWrap  = document.getElementById('work-hero-wrap');
+  var heroLabel = document.getElementById('work-hero-label');
+  var heroLink  = document.getElementById('work-hero-link');
+  if (heroImg)   { heroImg.src = hero.img; heroImg.alt = hero.alt; }
+  if (heroWrap)  heroWrap.dataset.href = hero.href;
+  if (heroLabel) heroLabel.textContent = hero.heroLabel;
+  if (heroLink)  heroLink.href = hero.href;
+
+  var smallImg   = document.getElementById('work-small-img');
+  var smallWrap  = document.getElementById('work-small-wrap');
+  var smallLabel = document.getElementById('work-small-label');
+  var smallLink  = document.getElementById('work-small-link');
+  if (smallImg)   { smallImg.src = small.img; smallImg.alt = small.alt; }
+  if (smallWrap)  smallWrap.dataset.href = small.href;
+  if (smallLabel) smallLabel.textContent = small.smallLabel;
+  if (smallLink)  smallLink.href = small.href;
+})();
+
 /* ── CURSOR (desktop only) ── */
 if (window.matchMedia('(pointer:fine)').matches) {
   const cur  = document.getElementById('cursor');
