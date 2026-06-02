@@ -53,16 +53,24 @@ if (sessionStorage.getItem('snb-v')) {
       href: 'https://clickandgoauto.com/',
       heroLabel: 'Click and Go',
       smallLabel: 'Click and Go'
+    },
+    {
+      img: 'images/projects/qibla%20homes.png',
+      alt: 'Qibla Homes',
+      href: 'https://qiblahomesltd.com/',
+      heroLabel: 'Qibla Homes',
+      smallLabel: 'Qibla Homes'
     }
   ];
 
   var key = 'snb-work-lead';
-  var last = localStorage.getItem(key);
-  var leadIdx = last === '1' ? 0 : 1;
+  var last = parseInt(localStorage.getItem(key) || '2', 10);
+  var leadIdx = (last + 1) % 3;
   localStorage.setItem(key, String(leadIdx));
 
-  var hero  = projects[leadIdx];
-  var small = projects[1 - leadIdx];
+  var hero   = projects[leadIdx];
+  var small1 = projects[(leadIdx + 1) % 3];
+  var small2 = projects[(leadIdx + 2) % 3];
 
   var heroImg   = document.getElementById('work-hero-img');
   var heroWrap  = document.getElementById('work-hero-wrap');
@@ -77,10 +85,19 @@ if (sessionStorage.getItem('snb-v')) {
   var smallWrap  = document.getElementById('work-small-wrap');
   var smallLabel = document.getElementById('work-small-label');
   var smallLink  = document.getElementById('work-small-link');
-  if (smallImg)   { smallImg.src = small.img; smallImg.alt = small.alt; }
-  if (smallWrap)  smallWrap.dataset.href = small.href;
-  if (smallLabel) smallLabel.textContent = small.smallLabel;
-  if (smallLink)  smallLink.href = small.href;
+  if (smallImg)   { smallImg.src = small1.img; smallImg.alt = small1.alt; }
+  if (smallWrap)  smallWrap.dataset.href = small1.href;
+  if (smallLabel) smallLabel.textContent = small1.smallLabel;
+  if (smallLink)  smallLink.href = small1.href;
+
+  var small2Img   = document.getElementById('work-small2-img');
+  var small2Wrap  = document.getElementById('work-small2-wrap');
+  var small2Label = document.getElementById('work-small2-label');
+  var small2Link  = document.getElementById('work-small2-link');
+  if (small2Img)   { small2Img.src = small2.img; small2Img.alt = small2.alt; }
+  if (small2Wrap)  small2Wrap.dataset.href = small2.href;
+  if (small2Label) small2Label.textContent = small2.smallLabel;
+  if (small2Link)  small2Link.href = small2.href;
 })();
 
 /* ── CURSOR (desktop only) ── */
