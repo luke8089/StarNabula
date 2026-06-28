@@ -648,7 +648,7 @@ function closeMob() {
         form.reset();
         [nameEl, emailEl, msgEl].forEach(function (el) { highlightField(el, false); });
       } else {
-        errBox.textContent = 'Something went wrong. Please try again or email us at hello@starnabula.tech.';
+        errBox.textContent = 'Something went wrong. Please try again or email us at starnabula18@gmail.com.';
         errBox.style.display = 'block';
       }
     } catch (_) {
