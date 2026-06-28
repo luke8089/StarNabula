@@ -532,43 +532,136 @@ function closeMob() {
 }
 
 /* ── CONTACT FORM — WEB3FORMS ── */
-document.getElementById('contact-form').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const btn       = document.getElementById('form-btn');
-  const label     = document.getElementById('form-btn-label');
-  const arrow     = document.getElementById('form-btn-arrow');
-  const spin      = document.getElementById('form-btn-spin');
-  const success   = document.getElementById('form-success');
-  const error     = document.getElementById('form-error');
+(function () {
+  var form    = document.getElementById('contact-form');
+  var btn     = document.getElementById('form-btn');
+  var label   = document.getElementById('form-btn-label');
+  var arrow   = document.getElementById('form-btn-arrow');
+  var spin    = document.getElementById('form-btn-spin');
+  var success = document.getElementById('form-success');
+  var errBox  = document.getElementById('form-error');
 
-  success.style.display = 'none';
-  error.style.display   = 'none';
-
-  label.textContent  = 'Sending…';
-  arrow.style.display = 'none';
-  spin.style.display  = 'block';
-  btn.disabled        = true;
-
-  try {
-    const data = new FormData(this);
-    const res  = await fetch('https://api.web3forms.com/submit', { method:'POST', body:data });
-    const json = await res.json();
-
-    if (json.success) {
-      success.style.display = 'block';
-      this.reset();
-    } else {
-      error.style.display = 'block';
-    }
-  } catch {
-    error.style.display = 'block';
-  } finally {
-    label.textContent   = 'Send Message';
-    arrow.style.display = 'block';
-    spin.style.display  = 'none';
-    btn.disabled        = false;
+  function showFieldErr(id, msg) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = msg;
+    el.style.display = 'block';
   }
-});
+  function clearFieldErr(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = '';
+    el.style.display = 'none';
+  }
+  function highlightField(el, bad) {
+    if (!el) return;
+    el.style.borderColor = bad ? 'rgba(248,113,113,.8)' : 'rgba(255,255,255,.13)';
+  }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    var nameEl    = document.getElementById('cf-name');
+    var emailEl   = document.getElementById('cf-email');
+    var msgEl     = document.getElementById('cf-message');
+    var consentEl = document.getElementById('cf-consent');
+
+    var name    = nameEl ? nameEl.value.trim() : '';
+    var email   = emailEl ? emailEl.value.trim() : '';
+    var msg     = msgEl ? msgEl.value.trim() : '';
+    var consent = consentEl ? consentEl.checked : false;
+
+    /* clear previous feedback */
+    ['cf-err-name','cf-err-email','cf-err-msg','cf-err-consent'].forEach(clearFieldErr);
+    [nameEl, emailEl, msgEl].forEach(function (el) { highlightField(el, false); });
+    success.style.display = 'none';
+    errBox.style.display  = 'none';
+    errBox.textContent    = '';
+
+    var valid = true;
+
+    /* name */
+    if (name.length < 2) {
+      showFieldErr('cf-err-name', 'Please enter your full name (at least 2 characters).');
+      highlightField(nameEl, true);
+      valid = false;
+    } else if (name.length > 100) {
+      showFieldErr('cf-err-name', 'Name must be under 100 characters.');
+      highlightField(nameEl, true);
+      valid = false;
+    } else if (/^\d+$/.test(name)) {
+      showFieldErr('cf-err-name', 'Please enter a real name.');
+      highlightField(nameEl, true);
+      valid = false;
+    }
+
+    /* email */
+    var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!email || !emailRe.test(email)) {
+      showFieldErr('cf-err-email', 'Please enter a valid email address.');
+      highlightField(emailEl, true);
+      valid = false;
+    }
+
+    /* message */
+    if (msg.length < 10) {
+      showFieldErr('cf-err-msg', 'Please describe your project — at least 10 characters.');
+      highlightField(msgEl, true);
+      valid = false;
+    } else if (msg.length > 3000) {
+      showFieldErr('cf-err-msg', 'Message must be under 3,000 characters.');
+      highlightField(msgEl, true);
+      valid = false;
+    }
+
+    /* privacy consent */
+    if (!consent) {
+      showFieldErr('cf-err-consent', 'Please agree to the Privacy Policy to continue.');
+      valid = false;
+    }
+
+    if (!valid) return;
+
+    /* rate limit — 60 s between submissions */
+    var lastSent = parseInt(localStorage.getItem('snb-last-submit') || '0', 10);
+    var remaining = 60000 - (Date.now() - lastSent);
+    if (remaining > 0) {
+      errBox.textContent = 'Please wait ' + Math.ceil(remaining / 1000) + ' seconds before sending another message.';
+      errBox.style.display = 'block';
+      return;
+    }
+
+    /* send */
+    label.textContent   = 'Sending…';
+    arrow.style.display = 'none';
+    spin.style.display  = 'block';
+    btn.disabled        = true;
+
+    try {
+      var data = new FormData(form);
+      var res  = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+      var json = await res.json();
+
+      if (json.success) {
+        localStorage.setItem('snb-last-submit', String(Date.now()));
+        success.style.display = 'block';
+        form.reset();
+        [nameEl, emailEl, msgEl].forEach(function (el) { highlightField(el, false); });
+      } else {
+        errBox.textContent = 'Something went wrong. Please try again or email us at hello@starnabula.tech.';
+        errBox.style.display = 'block';
+      }
+    } catch (_) {
+      errBox.textContent = 'Connection error. Check your internet and try again.';
+      errBox.style.display = 'block';
+    } finally {
+      label.textContent   = 'Send Message';
+      arrow.style.display = 'block';
+      spin.style.display  = 'none';
+      btn.disabled        = false;
+    }
+  });
+})();
 
 /* ── PORTFOLIO SHUFFLE + LOAD MORE ── */
 (function(){

@@ -1891,26 +1891,46 @@
         <input type="hidden" name="redirect" value="false" />
         <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off" />
 
-        <input type="text" name="name" autocomplete="name" placeholder="Your name" required
+        <div>
+          <input id="cf-name" type="text" name="name" autocomplete="name" placeholder="Your name" maxlength="100"
+            class="bg-transparent border-b pb-3 text-sm text-white outline-none transition-colors w-full"
+            style="border-color:rgba(255,255,255,.13);color:#fff;"
+            onfocus="this.style.borderColor='rgba(255,255,255,.45)'" onblur="this.style.borderColor='rgba(255,255,255,.13)'"
+          />
+          <span id="cf-err-name" style="display:none;font-size:.67rem;color:#f87171;letter-spacing:.05em;margin-top:4px;display:none;"></span>
+        </div>
+        <div>
+          <input id="cf-email" type="email" name="email" autocomplete="email" placeholder="Email address" maxlength="254"
+            class="bg-transparent border-b pb-3 text-sm text-white outline-none transition-colors w-full"
+            style="border-color:rgba(255,255,255,.13);color:#fff;"
+            onfocus="this.style.borderColor='rgba(255,255,255,.45)'" onblur="this.style.borderColor='rgba(255,255,255,.13)'"
+          />
+          <span id="cf-err-email" style="display:none;font-size:.67rem;color:#f87171;letter-spacing:.05em;margin-top:4px;"></span>
+        </div>
+        <input id="cf-project" type="text" name="project_type" autocomplete="off" placeholder="Project type (Web / App / Brand / Print…)" maxlength="200"
           class="bg-transparent border-b pb-3 text-sm text-white outline-none transition-colors"
           style="border-color:rgba(255,255,255,.13);color:#fff;"
           onfocus="this.style.borderColor='rgba(255,255,255,.45)'" onblur="this.style.borderColor='rgba(255,255,255,.13)'"
         />
-        <input type="email" name="email" autocomplete="email" placeholder="Email address" required
-          class="bg-transparent border-b pb-3 text-sm text-white outline-none transition-colors"
-          style="border-color:rgba(255,255,255,.13);color:#fff;"
-          onfocus="this.style.borderColor='rgba(255,255,255,.45)'" onblur="this.style.borderColor='rgba(255,255,255,.13)'"
-        />
-        <input type="text" name="project_type" autocomplete="off" placeholder="Project type (Web / App / Brand / Print…)"
-          class="bg-transparent border-b pb-3 text-sm text-white outline-none transition-colors"
-          style="border-color:rgba(255,255,255,.13);color:#fff;"
-          onfocus="this.style.borderColor='rgba(255,255,255,.45)'" onblur="this.style.borderColor='rgba(255,255,255,.13)'"
-        />
-        <textarea name="message" autocomplete="off" rows="3" placeholder="Tell us about your project" required
-          class="bg-transparent border-b pb-3 text-sm text-white outline-none transition-colors resize-none"
-          style="border-color:rgba(255,255,255,.13);color:#fff;"
-          onfocus="this.style.borderColor='rgba(255,255,255,.45)'" onblur="this.style.borderColor='rgba(255,255,255,.13)'"
-        ></textarea>
+        <div>
+          <textarea id="cf-message" name="message" autocomplete="off" rows="3" placeholder="Tell us about your project" maxlength="3000"
+            class="bg-transparent border-b pb-3 text-sm text-white outline-none transition-colors resize-none w-full"
+            style="border-color:rgba(255,255,255,.13);color:#fff;"
+            onfocus="this.style.borderColor='rgba(255,255,255,.45)'" onblur="this.style.borderColor='rgba(255,255,255,.13)'"
+          ></textarea>
+          <span id="cf-err-msg" style="display:none;font-size:.67rem;color:#f87171;letter-spacing:.05em;margin-top:4px;"></span>
+        </div>
+
+        <!-- Privacy consent -->
+        <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;">
+          <input id="cf-consent" type="checkbox" style="margin-top:2px;accent-color:#15a19a;flex-shrink:0;" />
+          <span style="font-size:.72rem;color:rgba(255,255,255,.38);line-height:1.6;">
+            I have read and agree to the
+            <a href="privacy-policy" style="color:rgba(255,255,255,.6);text-decoration:underline;text-underline-offset:2px;">Privacy Policy</a>.
+            I consent to StarNabula processing my data to respond to my enquiry.
+          </span>
+        </label>
+        <span id="cf-err-consent" style="display:none;font-size:.67rem;color:#f87171;letter-spacing:.05em;margin-top:-10px;"></span>
 
         <!-- Status messages -->
         <p id="form-success" style="display:none;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:#4ade80;">
@@ -1951,8 +1971,13 @@
       </div>
     </div>
     <hr class="s-rule mb-6" />
-    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
       <p class="idx">©<span id="footer-year">2026</span> STARNABULA · ALL RIGHTS RESERVED</p>
+      <div class="flex flex-wrap gap-4">
+        <a href="privacy-policy" class="idx hover:text-white transition-colors" style="text-decoration:none;">Privacy Policy</a>
+        <a href="terms" class="idx hover:text-white transition-colors" style="text-decoration:none;">Terms</a>
+        <a href="cookie-policy" class="idx hover:text-white transition-colors" style="text-decoration:none;">Cookies</a>
+      </div>
       <p class="idx">SOFTWARE · APPS · IT SUPPORT · NAIROBI</p>
     </div>
   </div>

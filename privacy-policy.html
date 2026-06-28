@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Privacy Policy | StarNabula</title>
+  <meta name="description" content="StarNabula Privacy Policy — how we collect, use and protect your personal data under the Kenya Data Protection Act 2019." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://starnabula.tech/privacy-policy" />
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+  <script>(function(){var t=localStorage.getItem('snb-theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');})()</script>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" /></noscript>
+  <style>
+    :root {
+      --bg:#080809; --bg-alt:#0d0d11;
+      --fg:#f0f0ee; --muted:rgba(255,255,255,.45); --muted-lo:rgba(255,255,255,.28);
+      --border:rgba(255,255,255,.08); --border-md:rgba(255,255,255,.12);
+      --accent:#15a19a; --blue:#1a8fe3;
+    }
+    [data-theme="light"] {
+      --bg:#f5f4f0; --bg-alt:#ece9e2;
+      --fg:#111110; --muted:rgba(0,0,0,.55); --muted-lo:rgba(0,0,0,.38);
+      --border:rgba(0,0,0,.08); --border-md:rgba(0,0,0,.12);
+    }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    html { background:var(--bg); scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--fg); font-family:'Inter',sans-serif; line-height:1.7; overflow-x:hidden; }
+    a { color:var(--accent); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+
+    /* nav */
+    nav { position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--border); padding:0 clamp(20px,5vw,48px); display:flex; align-items:center; justify-content:space-between; height:60px; }
+    .nav-logo { display:flex; align-items:center; gap:10px; font-size:.72rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); text-decoration:none; }
+    .nav-logo img { height:26px; width:auto; }
+    .nav-links { display:flex; align-items:center; gap:20px; font-size:.68rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+    .nav-links a { color:var(--muted); transition:color .2s; }
+    .nav-links a:hover { color:var(--fg); text-decoration:none; }
+    .theme-btn { width:30px; height:30px; border-radius:50%; background:transparent; border:1px solid var(--border-md); color:var(--muted); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:border-color .25s,color .25s; padding:0; flex-shrink:0; }
+    .theme-btn:hover { border-color:var(--muted); color:var(--fg); }
+    .icon-sun { display:none; }
+    .icon-moon { display:block; }
+    [data-theme="light"] .icon-sun { display:block; }
+    [data-theme="light"] .icon-moon { display:none; }
+
+    /* content */
+    main { max-width:760px; margin:0 auto; padding:clamp(40px,8vw,80px) clamp(20px,5vw,48px) clamp(60px,10vw,120px); }
+    .page-label { font-size:.66rem; letter-spacing:.22em; font-weight:700; text-transform:uppercase; color:var(--accent); margin-bottom:10px; display:block; }
+    h1 { font-size:clamp(2rem,5vw,3.2rem); font-weight:900; letter-spacing:-.03em; line-height:1.05; margin-bottom:8px; }
+    .effective { font-size:.72rem; letter-spacing:.1em; font-weight:600; text-transform:uppercase; color:var(--muted-lo); margin-top:6px; margin-bottom:48px; display:block; }
+    h2 { font-size:1rem; font-weight:800; letter-spacing:.04em; text-transform:uppercase; color:var(--accent); margin:44px 0 12px; }
+    h3 { font-size:.92rem; font-weight:700; margin:24px 0 8px; }
+    p { font-size:.9rem; color:var(--muted); margin-bottom:14px; }
+    ul { padding-left:18px; margin-bottom:14px; }
+    li { font-size:.9rem; color:var(--muted); margin-bottom:6px; }
+    strong { color:var(--fg); font-weight:600; }
+    .divider { border:none; border-top:1px solid var(--border); margin:36px 0; }
+    .contact-box { background:var(--bg-alt); border:1px solid var(--border-md); border-radius:4px; padding:20px 24px; margin-top:16px; }
+    .contact-box p { margin:0; font-size:.85rem; }
+    .back-link { display:inline-flex; align-items:center; gap:6px; font-size:.68rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--muted-lo); margin-bottom:36px; transition:color .2s; }
+    .back-link:hover { color:var(--fg); text-decoration:none; }
+
+    /* footer */
+    footer { border-top:1px solid var(--border); padding:28px clamp(20px,5vw,48px); text-align:center; }
+    footer p { font-size:.66rem; letter-spacing:.14em; font-weight:600; text-transform:uppercase; color:var(--muted-lo); margin:0; }
+    .footer-links { display:flex; justify-content:center; gap:20px; margin-top:10px; flex-wrap:wrap; }
+    .footer-links a { font-size:.66rem; letter-spacing:.14em; font-weight:600; text-transform:uppercase; color:var(--muted-lo); transition:color .2s; }
+    .footer-links a:hover { color:var(--fg); text-decoration:none; }
+    ::-webkit-scrollbar { width:3px; }
+    ::-webkit-scrollbar-track { background:var(--bg); }
+    ::-webkit-scrollbar-thumb { background:var(--border-md); border-radius:2px; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">
+    <img src="images/logo.png" alt="StarNabula" />
+  </a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="terms">Terms</a>
+    <a href="cookie-policy">Cookies</a>
+    <button class="theme-btn" id="theme-btn" aria-label="Toggle theme">
+      <svg class="icon-sun" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="icon-moon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</nav>
+
+<main>
+  <a href="/" class="back-link">
+    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Back to Home
+  </a>
+
+  <span class="page-label">Legal</span>
+  <h1>Privacy Policy</h1>
+  <span class="effective">Effective: 1 June 2026 &nbsp;·&nbsp; Last updated: June 2026</span>
+
+  <p>StarNabula Ventures Ltd ("<strong>StarNabula</strong>", "<strong>we</strong>", "<strong>us</strong>", or "<strong>our</strong>") is committed to protecting your privacy. This Privacy Policy explains what personal data we collect when you visit <strong>starnabula.tech</strong>, why we collect it, how we use it, and your rights under the <strong>Kenya Data Protection Act 2019 (DPA 2019)</strong> and applicable international standards.</p>
+  <p>By using this website or submitting our contact form, you acknowledge that you have read and understood this policy.</p>
+
+  <hr class="divider" />
+
+  <h2>1. Who We Are — Data Controller</h2>
+  <p><strong>StarNabula Ventures Ltd</strong><br />
+  Westlands, Redhill Road, Nairobi, Kenya<br />
+  Email: <a href="mailto:hello@starnabula.tech">hello@starnabula.tech</a><br />
+  Website: <a href="https://starnabula.tech">https://starnabula.tech</a></p>
+  <p>We are the data controller responsible for personal data collected through this website. For any privacy-related queries or to exercise your rights, contact us at the address above.</p>
+
+  <h2>2. What Personal Data We Collect</h2>
+  <p>We collect the minimum data necessary to respond to your enquiry. The only personal data we collect is submitted voluntarily through our <strong>contact form</strong>:</p>
+  <ul>
+    <li><strong>Full name</strong> — to address you personally</li>
+    <li><strong>Email address</strong> — to send you a reply</li>
+    <li><strong>Project type</strong> (optional) — to route your enquiry to the right team</li>
+    <li><strong>Message / project description</strong> — to understand your needs</li>
+  </ul>
+  <p>We do <strong>not</strong> collect payment information, government identification, or any sensitive categories of personal data as defined under the DPA 2019.</p>
+  <p>We do <strong>not</strong> use cookies, tracking pixels, analytics scripts (e.g. Google Analytics), or advertising networks. See our <a href="cookie-policy">Cookie &amp; Storage Policy</a> for details on the limited browser storage we do use.</p>
+
+  <h2>3. How We Use Your Data</h2>
+  <p>The data you submit through the contact form is used <strong>solely</strong> to:</p>
+  <ul>
+    <li>Respond to your enquiry or project request</li>
+    <li>Provide you with information about our services</li>
+    <li>Follow up on a conversation you initiated</li>
+  </ul>
+  <p>We do not use your data for automated decision-making, profiling, or marketing without your explicit consent.</p>
+
+  <h2>4. Legal Basis for Processing</h2>
+  <p>Under the Kenya Data Protection Act 2019, we rely on the following legal bases:</p>
+  <ul>
+    <li><strong>Consent</strong> — by ticking the consent checkbox on our contact form and submitting it, you give us your explicit consent to process your data for the purpose stated at that point.</li>
+    <li><strong>Legitimate interest</strong> — responding to a business enquiry you initiated is a legitimate interest that is not overridden by your privacy rights.</li>
+  </ul>
+  <p>You may withdraw consent at any time by emailing us at <a href="mailto:hello@starnabula.tech">hello@starnabula.tech</a>. Withdrawal does not affect the lawfulness of processing carried out before withdrawal.</p>
+
+  <h2>5. Data Sharing &amp; Third-Party Processors</h2>
+  <p>We share your contact form data with the following third-party service providers who process it on our behalf under appropriate data processing terms:</p>
+  <ul>
+    <li><strong>Web3Forms</strong> (<a href="https://web3forms.com" target="_blank" rel="noopener">web3forms.com</a>) — our form submission processor. When you submit the contact form, your data is transmitted to Web3Forms' servers and forwarded to our email inbox. Web3Forms stores form submissions for a limited period. Review their privacy policy at web3forms.com.</li>
+    <li><strong>GitHub Pages</strong> — our website is hosted on GitHub Pages (GitHub, Inc., USA). GitHub may process IP addresses as part of normal server operations. Review GitHub's privacy statement at github.com/privacy.</li>
+    <li><strong>Google Fonts</strong> — we load fonts from Google's CDN. Google may log your IP address. Review Google's privacy policy at policies.google.com/privacy.</li>
+    <li><strong>Cloudflare CDN</strong> — JavaScript libraries are loaded from cdnjs.cloudflare.com. Cloudflare may process IP addresses as part of CDN delivery.</li>
+  </ul>
+  <p>We do <strong>not</strong> sell, rent, or trade your personal data to any third party.</p>
+  <p>We may disclose your data if required to do so by Kenyan law, court order, or regulatory authority, or to protect the rights and safety of StarNabula and its clients.</p>
+
+  <h2>6. Data Retention</h2>
+  <p>We retain contact form enquiry data for a maximum of <strong>12 months</strong> from the date of your last interaction with us. After this period, data is deleted unless we are legally required to retain it longer, or you have entered into a service agreement with us (in which case contractual records may be kept for up to 7 years as required under Kenyan commercial law).</p>
+
+  <h2>7. International Data Transfers</h2>
+  <p>Some of our third-party processors (Web3Forms, GitHub, Google, Cloudflare) are based outside Kenya, primarily in the United States. Where data is transferred internationally, we ensure that appropriate safeguards are in place consistent with the requirements of the Kenya DPA 2019 and, where applicable, international data protection standards.</p>
+
+  <h2>8. Your Rights Under the Kenya DPA 2019</h2>
+  <p>As a data subject, you have the following rights:</p>
+  <ul>
+    <li><strong>Right of access</strong> — request a copy of the personal data we hold about you.</li>
+    <li><strong>Right to rectification</strong> — ask us to correct inaccurate or incomplete data.</li>
+    <li><strong>Right to erasure</strong> — ask us to delete your personal data where we no longer have a lawful reason to process it.</li>
+    <li><strong>Right to restriction</strong> — ask us to temporarily stop processing your data in certain circumstances.</li>
+    <li><strong>Right to object</strong> — object to processing based on legitimate interests.</li>
+    <li><strong>Right to data portability</strong> — receive your data in a structured, commonly used format.</li>
+    <li><strong>Right to withdraw consent</strong> — where processing is based on consent, withdraw it at any time.</li>
+  </ul>
+  <p>To exercise any of these rights, email us at <a href="mailto:hello@starnabula.tech">hello@starnabula.tech</a> with the subject line "Data Rights Request". We will respond within <strong>30 days</strong> as required by the DPA 2019. We may ask you to verify your identity before fulfilling a request.</p>
+  <p>If you believe your data rights have been violated, you have the right to lodge a complaint with the <strong>Office of the Data Protection Commissioner (ODPC)</strong> of Kenya at <a href="https://www.odpc.go.ke" target="_blank" rel="noopener">www.odpc.go.ke</a>.</p>
+
+  <h2>9. Website &amp; Browser Storage</h2>
+  <p>We do not use tracking cookies or analytics. We use browser <strong>localStorage</strong> (a local, client-side storage mechanism) for the following non-personal purposes only:</p>
+  <ul>
+    <li><strong>Theme preference</strong> — remembers whether you prefer dark or light mode.</li>
+    <li><strong>Visit state</strong> — remembers if you have visited before to skip the intro animation on return visits.</li>
+    <li><strong>UI state</strong> — remembers which featured project was last displayed for rotation purposes.</li>
+    <li><strong>Form rate-limiting</strong> — stores a timestamp to prevent rapid repeated form submissions. No personal data is stored, only a Unix timestamp.</li>
+  </ul>
+  <p>None of these items contain personal data and none are transmitted to any server. You can clear them at any time through your browser settings. See our <a href="cookie-policy">Cookie &amp; Storage Policy</a> for more detail.</p>
+
+  <h2>10. Security</h2>
+  <p>We implement appropriate technical and organisational measures to protect your data, including:</p>
+  <ul>
+    <li>HTTPS/TLS encryption on all data in transit</li>
+    <li>HTTP Strict Transport Security (HSTS) headers</li>
+    <li>Content Security Policy and other security headers</li>
+    <li>Honeypot and rate-limiting on the contact form to prevent automated abuse</li>
+  </ul>
+  <p>While we take reasonable precautions, no method of transmission over the internet is 100% secure. We cannot guarantee absolute security of data transmitted to us.</p>
+
+  <h2>11. Third-Party Links</h2>
+  <p>Our website contains links to third-party websites (client project sites, social media platforms). We are not responsible for the privacy practices of those sites and encourage you to review their privacy policies before submitting any personal data to them.</p>
+
+  <h2>12. Children's Privacy</h2>
+  <p>Our services are not directed to persons under the age of 18. We do not knowingly collect personal data from minors. If you believe a minor has submitted data to us, please contact us immediately and we will delete it promptly.</p>
+
+  <h2>13. Changes to This Policy</h2>
+  <p>We may update this Privacy Policy from time to time to reflect changes in our practices or legal requirements. The "Last updated" date at the top of this page will be revised accordingly. We encourage you to review this policy periodically. Continued use of our website after any changes constitutes your acceptance of the updated policy.</p>
+
+  <h2>14. Contact Us</h2>
+  <p>For any questions, concerns, or data rights requests, please contact us:</p>
+  <div class="contact-box">
+    <p><strong>StarNabula Ventures Ltd</strong><br />
+    Westlands, Redhill Road, Nairobi, Kenya<br />
+    Email: <a href="mailto:hello@starnabula.tech">hello@starnabula.tech</a><br />
+    Website: <a href="https://starnabula.tech">starnabula.tech</a></p>
+  </div>
+</main>
+
+<footer>
+  <p>© <span id="yr"></span> StarNabula Ventures Ltd · All Rights Reserved</p>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="privacy-policy">Privacy Policy</a>
+    <a href="terms">Terms &amp; Conditions</a>
+    <a href="cookie-policy">Cookie Policy</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  document.getElementById('theme-btn').addEventListener('click', function() {
+    var h = document.documentElement;
+    var isLight = h.getAttribute('data-theme') === 'light';
+    if (isLight) { h.removeAttribute('data-theme'); localStorage.setItem('snb-theme','dark'); }
+    else { h.setAttribute('data-theme','light'); localStorage.setItem('snb-theme','light'); }
+  });
+</script>
+</body>
+</html>
