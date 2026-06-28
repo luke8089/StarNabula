@@ -16,27 +16,6 @@ gsap.registerPlugin(ScrollTrigger);
   });
 })();
 
-/* ── LOADER ── */
-const ldFill = document.getElementById('ld-fill');
-const ldNum  = document.getElementById('ld-num');
-const ldEl   = document.getElementById('loader');
-
-function dismissLoader() {
-  gsap.to(ldEl, { opacity:0, duration:.45, ease:'power2.inOut', onComplete(){ ldEl.style.display='none'; }});
-  boot();
-}
-
-if (sessionStorage.getItem('snb-v')) {
-  ldEl.style.display = 'none';
-  boot();
-} else {
-  sessionStorage.setItem('snb-v', '1');
-  ldFill.style.transition = 'width 0.14s linear';
-  ldFill.style.width = '100%';
-  ldNum.textContent = '100';
-  setTimeout(dismissLoader, 180);
-}
-
 /* ── FEATURED WORK ROTATION ── */
 (function() {
   var projects = [
@@ -804,3 +783,5 @@ document.querySelectorAll('.ftab').forEach(tab => {
   }
   scaleAll();
 })();
+
+boot();

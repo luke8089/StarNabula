@@ -475,6 +475,8 @@
 
   <!-- preload above-fold logo so it is not discovered late -->
   <link rel="preload" as="image" href="images/logo.png" fetchpriority="high" />
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" as="script" />
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" as="script" />
 
   <link rel="stylesheet" href="output.css?v=2" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
@@ -2003,6 +2005,27 @@
 </footer>
 
 <!-- ════════════ SCRIPTS ════════════ -->
-<script src="main.js?v=3" defer></script>
+<!-- Loader dismiss runs inline — no GSAP dependency, no waiting -->
+<script>
+(function(){
+  var ldEl   = document.getElementById('loader');
+  var ldFill = document.getElementById('ld-fill');
+  var ldNum  = document.getElementById('ld-num');
+  if (!ldEl) return;
+  if (sessionStorage.getItem('snb-v')) {
+    ldEl.style.display = 'none';
+  } else {
+    sessionStorage.setItem('snb-v', '1');
+    if (ldFill) { ldFill.style.transition = 'width 0.14s linear'; ldFill.style.width = '100%'; }
+    if (ldNum)  ldNum.textContent = '100';
+    setTimeout(function() {
+      ldEl.style.transition = 'opacity 0.45s ease';
+      ldEl.style.opacity = '0';
+      setTimeout(function() { ldEl.style.display = 'none'; }, 460);
+    }, 180);
+  }
+})();
+</script>
+<script src="main.js?v=4" defer></script>
 </body>
 </html>
