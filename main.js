@@ -34,7 +34,7 @@ gsap.registerPlugin(ScrollTrigger);
       smallLabel: 'Click and Go'
     },
     {
-      img: 'images/projects/qibla%20homes.png',
+      img: 'images/projects/qibla%20homes.jpg',
       alt: 'Qibla Homes',
       href: 'https://qiblahomesltd.com/',
       heroLabel: 'Qibla Homes',
