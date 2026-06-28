@@ -541,6 +541,17 @@ function closeMob() {
   var success = document.getElementById('form-success');
   var errBox  = document.getElementById('form-error');
 
+  /* live character counter */
+  var msgTextarea = document.getElementById('cf-message');
+  var charCount   = document.getElementById('cf-char-count');
+  if (msgTextarea && charCount) {
+    msgTextarea.addEventListener('input', function () {
+      var len = msgTextarea.value.length;
+      charCount.textContent = len + ' / 3000';
+      charCount.style.color = len > 2850 ? '#f87171' : len > 2400 ? '#fb923c' : 'rgba(255,255,255,.22)';
+    });
+  }
+
   function showFieldErr(id, msg) {
     var el = document.getElementById(id);
     if (!el) return;
