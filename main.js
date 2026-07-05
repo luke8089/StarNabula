@@ -195,14 +195,14 @@ function boot() {
     { opacity:0, y:44 },
     { opacity:1, y:0, duration:.85, ease:'power3.out', scrollTrigger:{ trigger:el, start:'top 90%', toggleActions:'play none none none' }}));
 
-  /* about image — split curtain reveal (left half top→bottom, right half bottom→top) */
+  /* about image - split curtain reveal (left half top→bottom, right half bottom→top) */
   gsap.timeline({
     scrollTrigger:{ trigger:'#about-img', start:'top 82%', toggleActions:'play none none none' }
   })
   .to('#about-img .img-curtain-l', { yPercent:  100, duration: 1.35, ease:'power3.inOut' }, 0)
   .to('#about-img .img-curtain-r', { yPercent: -100, duration: 1.35, ease:'power3.inOut' }, 0);
 
-  /* universal split-curtain reveal — work, portfolio, gallery */
+  /* universal split-curtain reveal - work, portfolio, gallery */
   const curtainSelectors = [
     ...document.querySelectorAll('#work .zoom-wrap'),
     ...document.querySelectorAll('#portfolio .zoom-wrap'),
@@ -224,13 +224,13 @@ function boot() {
     .to(cr, { yPercent: -100, duration: 1.35, ease:'power3.inOut' }, 0);
   });
 
-  /* about heading — same left-to-right unfold as hero tagline */
+  /* about heading - same left-to-right unfold as hero tagline */
   gsap.fromTo('#about-heading',
     { clipPath:'inset(0 100% 0 0)' },
     { clipPath:'inset(0 0% 0 0)', duration:2.2, ease:'power2.inOut',
       scrollTrigger:{ trigger:'#about-heading', start:'top 85%', toggleActions:'play none none none' }});
 
-  /* contact "NG" — breaks off, swings right→left, settles broken at 90° */
+  /* contact "NG" - breaks off, swings right→left, settles broken at 90° */
   gsap.set('#contact-ng', { rotation: 145 });
   ScrollTrigger.create({
     trigger: '#contact-ng', start: 'top 88%', once: true,
@@ -249,7 +249,7 @@ function boot() {
     }
   });
 
-  /* process "wo" — breaks off left, pivot bottom-right, settles broken at -90° */
+  /* process "wo" - breaks off left, pivot bottom-right, settles broken at -90° */
   gsap.set('#process-wo', { rotation: -145 });
   ScrollTrigger.create({
     trigger: '#process-wo', start: 'top 88%', once: true,
@@ -510,7 +510,42 @@ function closeMob() {
   ['hb1','hb2','hb3'].forEach(id=>{ const el=document.getElementById(id); if(el){el.style.transform='';el.style.opacity='';} });
 }
 
-/* ── CONTACT FORM — WEB3FORMS ── */
+/* ── SERVICE DETAIL MODAL (IT Support) ── */
+(function () {
+  var modal = document.getElementById('svc-modal');
+  if (!modal) return;
+  var closeBtn = document.getElementById('svc-modal-close');
+  var backdrop = modal.querySelector('.svc-modal-backdrop');
+  var body     = modal.querySelector('.svc-modal-body');
+
+  function openModal() {
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    if (body) body.scrollTop = 0;
+    if (closeBtn) closeBtn.focus();
+  }
+  function closeModal() {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('[data-svc-modal]').forEach(function (row) {
+    row.addEventListener('click', openModal);
+  });
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (backdrop) backdrop.addEventListener('click', closeModal);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+  /* CTA inside the modal scrolls to #contact - close first */
+  modal.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', closeModal);
+  });
+})();
+
+/* ── CONTACT FORM - WEB3FORMS ── */
 (function () {
   var form    = document.getElementById('contact-form');
   var btn     = document.getElementById('form-btn');
@@ -595,7 +630,7 @@ function closeMob() {
 
     /* message */
     if (msg.length < 10) {
-      showFieldErr('cf-err-msg', 'Please describe your project — at least 10 characters.');
+      showFieldErr('cf-err-msg', 'Please describe your project (at least 10 characters).');
       highlightField(msgEl, true);
       valid = false;
     } else if (msg.length > 3000) {
@@ -612,7 +647,7 @@ function closeMob() {
 
     if (!valid) return;
 
-    /* rate limit — 60 s between submissions */
+    /* rate limit - 60 s between submissions */
     var lastSent = parseInt(localStorage.getItem('snb-last-submit') || '0', 10);
     var remaining = 60000 - (Date.now() - lastSent);
     if (remaining > 0) {
@@ -735,7 +770,7 @@ document.querySelectorAll('.ftab').forEach(tab => {
   });
 });
 
-/* ── LIVE SITE PREVIEWS — lazy load + scale iframes ── */
+/* ── LIVE SITE PREVIEWS - lazy load + scale iframes ── */
 (function(){
   function scaleFrame(frame){
     var wrap = frame.closest('.zoom-wrap');
