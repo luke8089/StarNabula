@@ -674,10 +674,15 @@
     .svc-modal-title { font-size:clamp(1.6rem,4.5vw,2.7rem); font-weight:900; letter-spacing:-.03em; line-height:1.05; margin:10px 0 16px; }
     .svc-modal-intro { font-size:.875rem; line-height:1.7; color:var(--muted-4); max-width:560px; }
     .svc-modal-rule { border:none; border-top:1px solid var(--border); margin:26px 0; }
-    .svc-modal-grid { display:grid; grid-template-columns:1fr; gap:22px; }
-    @media(min-width:640px){ .svc-modal-grid { grid-template-columns:1fr 1fr; gap:26px 34px; } }
-    .svc-modal-item h4 { font-size:.95rem; font-weight:700; margin:6px 0; }
-    .svc-modal-item p { font-size:.8rem; line-height:1.7; color:var(--muted-3); }
+    .svc-modal-tabs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px; }
+    .svc-modal-tab { font-size:.62rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; padding:8px 14px; border:1px solid var(--border-md); background:transparent; color:var(--muted-2); cursor:pointer; transition:all .22s; }
+    .svc-modal-tab.on, .svc-modal-tab:hover { background:var(--fg); color:var(--bg); border-color:var(--fg); }
+    .svc-modal-item-view { min-height:180px; }
+    .svc-modal-item-view h4 { font-size:clamp(1.1rem,2.6vw,1.5rem); font-weight:800; letter-spacing:-.01em; margin:10px 0 12px; }
+    .svc-modal-item-view p { font-size:.9rem; line-height:1.85; color:var(--muted-4); max-width:620px; }
+    /* service-row tags open the modal on their own item */
+    [data-svc-modal] .tag { cursor:pointer; transition:color .2s,border-color .2s; }
+    [data-svc-modal] .tag:hover { color:var(--fg); border-color:var(--muted-6); }
     .svc-modal-foot { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; }
     .svc-modal-foot p { font-size:.75rem; line-height:1.7; color:var(--muted-3); max-width:400px; }
     .svc-modal-cta { display:inline-flex; align-items:center; gap:10px; font-size:.68rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; border:1px solid var(--border-lg); padding:13px 26px; color:var(--fg); transition:background .25s,color .25s,border-color .25s; white-space:nowrap; }
@@ -1237,7 +1242,7 @@
     </div>
 
     <!-- 01 Software Development -->
-    <div class="svc-row py-6 md:py-9 r-up cursor-pointer">
+    <div class="svc-row py-6 md:py-9 r-up cursor-pointer" data-svc-modal="software">
       <div class="flex items-center justify-between gap-4">
 
         <div class="flex items-center gap-4 md:gap-10 min-w-0">
@@ -1269,6 +1274,7 @@
                style="color:rgba(255,255,255,.45);">
               We design and build custom software systems that automate operations, improve efficiency,
               and support business growth across different industries.
+              <span class="svc-more-hint">Click for the full breakdown →</span>
             </p>
 
             <div class="flex flex-col gap-2">
@@ -1284,7 +1290,7 @@
     </div>
 
     <!-- 02 Websites & Apps -->
-    <div class="svc-row py-6 md:py-9 r-up cursor-pointer">
+    <div class="svc-row py-6 md:py-9 r-up cursor-pointer" data-svc-modal="webapps">
       <div class="flex items-center justify-between gap-4">
 
         <div class="flex items-center gap-4 md:gap-10 min-w-0">
@@ -1316,6 +1322,7 @@
                style="color:rgba(255,255,255,.45);">
               We build fast, scalable websites and mobile applications designed for performance,
               usability, and growth across all devices and platforms.
+              <span class="svc-more-hint">Click for the full breakdown →</span>
             </p>
 
             <div class="flex flex-col gap-2">
@@ -1331,7 +1338,7 @@
     </div>
 
     <!-- 03 ERP Systems -->
-    <div class="svc-row py-6 md:py-9 r-up cursor-pointer">
+    <div class="svc-row py-6 md:py-9 r-up cursor-pointer" data-svc-modal="erp">
       <div class="flex items-center justify-between gap-4">
 
         <div class="flex items-center gap-4 md:gap-10 min-w-0">
@@ -1363,6 +1370,7 @@
                style="color:rgba(255,255,255,.45);">
               We develop ERP and management systems that help organizations manage operations,
               staff, finances, inventory, and reporting in one centralized platform.
+              <span class="svc-more-hint">Click for the full breakdown →</span>
             </p>
 
             <div class="flex flex-col gap-2">
@@ -1378,7 +1386,7 @@
     </div>
 
     <!-- 04 SaaS & Cloud -->
-    <div class="svc-row py-6 md:py-9 r-up cursor-pointer">
+    <div class="svc-row py-6 md:py-9 r-up cursor-pointer" data-svc-modal="saas">
       <div class="flex items-center justify-between gap-4">
 
         <div class="flex items-center gap-4 md:gap-10 min-w-0">
@@ -1410,6 +1418,7 @@
                style="color:rgba(255,255,255,.45);">
               We build cloud-based SaaS platforms that scale with your business,
               offering reliability, performance, and secure infrastructure.
+              <span class="svc-more-hint">Click for the full breakdown →</span>
             </p>
 
             <div class="flex flex-col gap-2">
@@ -1425,7 +1434,7 @@
     </div>
 
     <!-- 05 IT Support -->
-    <div class="svc-row py-6 md:py-9 r-up cursor-pointer" data-svc-modal>
+    <div class="svc-row py-6 md:py-9 r-up cursor-pointer" data-svc-modal="itsupport">
       <div class="flex items-center justify-between gap-4">
 
         <div class="flex items-center gap-4 md:gap-10 min-w-0">
@@ -2027,7 +2036,7 @@
   </div>
 </footer>
 
-<!-- ════════════ IT SUPPORT DETAIL MODAL ════════════ -->
+<!-- ════════════ SERVICE DETAIL MODAL (content injected per service) ════════════ -->
 <div id="svc-modal" role="dialog" aria-modal="true" aria-labelledby="svc-modal-title" aria-hidden="true">
   <div class="svc-modal-backdrop"></div>
   <div class="svc-modal-panel">
@@ -2036,11 +2045,11 @@
     </button>
 
     <div class="svc-modal-body">
-    <span class="idx">MOD V · IT SUPPORT SERVICES</span>
+    <span class="idx" id="svc-modal-label">MOD V · IT SUPPORT SERVICES</span>
     <h3 id="svc-modal-title" class="svc-modal-title">
       Keeping your systems<br/><span style="color:var(--primary);">running.</span>
     </h3>
-    <p class="svc-modal-intro">
+    <p class="svc-modal-intro" id="svc-modal-intro">
       From everyday troubleshooting to full infrastructure care, we keep your technology
       working so you can focus on your business. We support businesses, institutions,
       offices, and homes: on-site across Nairobi and remotely wherever you are.
@@ -2048,33 +2057,13 @@
 
     <hr class="svc-modal-rule" />
 
-    <div class="svc-modal-grid">
-      <div class="svc-modal-item">
-        <span class="idx" style="color:var(--primary);">01</span>
-        <h4>System Maintenance</h4>
-        <p>Proactive servicing that prevents downtime before it happens: operating system and software updates, security patching, performance tuning, storage clean-up, and scheduled health checks for your computers and servers.</p>
-      </div>
-      <div class="svc-modal-item">
-        <span class="idx" style="color:var(--primary);">02</span>
-        <h4>Remote Support</h4>
-        <p>Fast help without the wait. We connect securely to your machine and resolve issues in real time: software errors, email and account setup, slow systems, and day-to-day troubleshooting for your team.</p>
-      </div>
-      <div class="svc-modal-item">
-        <span class="idx" style="color:var(--primary);">03</span>
-        <h4>Hardware &amp; Software Fixes</h4>
-        <p>Diagnosis and repair of desktops, laptops, and peripherals: component upgrades, operating system installation and recovery, plus software installation, licensing, and configuration.</p>
-      </div>
-      <div class="svc-modal-item">
-        <span class="idx" style="color:var(--primary);">04</span>
-        <h4>Network Setup</h4>
-        <p>Design and installation of reliable office and home networks: routers, Wi-Fi coverage, structured cabling, printers and shared devices, with ongoing network maintenance and security.</p>
-      </div>
-    </div>
+    <div class="svc-modal-tabs" id="svc-modal-tabs"></div>
+    <div class="svc-modal-item-view" id="svc-modal-item"></div>
 
     <hr class="svc-modal-rule" />
 
     <div class="svc-modal-foot">
-      <p>Available as one-off fixes or ongoing monthly support plans, with 24/7 priority response for support-contract clients.</p>
+      <p id="svc-modal-foot-text">Available as one-off fixes or ongoing monthly support plans, with 24/7 priority response for support-contract clients.</p>
       <a href="#contact" class="svc-modal-cta">
         Request support
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -2106,6 +2095,6 @@
   }
 })();
 </script>
-<script src="main.js?v=5" defer></script>
+<script src="main.js?v=6" defer></script>
 </body>
 </html>

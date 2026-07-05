@@ -510,15 +510,114 @@ function closeMob() {
   ['hb1','hb2','hb3'].forEach(id=>{ const el=document.getElementById(id); if(el){el.style.transform='';el.style.opacity='';} });
 }
 
-/* ── SERVICE DETAIL MODAL (IT Support) ── */
+/* ── SERVICE DETAIL MODALS ── */
 (function () {
   var modal = document.getElementById('svc-modal');
   if (!modal) return;
   var closeBtn = document.getElementById('svc-modal-close');
   var backdrop = modal.querySelector('.svc-modal-backdrop');
   var body     = modal.querySelector('.svc-modal-body');
+  var labelEl  = document.getElementById('svc-modal-label');
+  var titleEl  = document.getElementById('svc-modal-title');
+  var introEl  = document.getElementById('svc-modal-intro');
+  var tabsEl   = document.getElementById('svc-modal-tabs');
+  var itemEl   = document.getElementById('svc-modal-item');
+  var footEl   = document.getElementById('svc-modal-foot-text');
 
-  function openModal() {
+  var SERVICES = {
+    software: {
+      label: 'MOD I · SOFTWARE DEVELOPMENT',
+      title: 'Software built around<br/><span style="color:var(--primary);">your business.</span>',
+      intro: 'We design and build custom software systems that automate operations, improve efficiency, and support growth. Every build starts from a real operational need and is engineered to scale with you.',
+      items: [
+        ['Custom Business Software', 'Software created specifically for your business, not an off-the-shelf package you have to bend around. We study how your company actually operates, then build a system that matches those processes exactly: your departments, your approval flows, your records, your reports. You own it fully, there are no per-user licence fees, and new features can be added whenever your business grows or changes.'],
+        ['Workflow Automation', 'We identify the repetitive manual tasks slowing your team down and replace them with automated processes: approvals, invoicing, reporting, notifications, and data transfers that run reliably in the background, reducing errors and freeing staff for higher-value work.'],
+        ['Enterprise Systems', 'Large-scale, multi-user systems for organizations that need structure and control: role-based access, audit trails, departmental modules, and management reporting, engineered to stay fast and reliable as your users and data grow.'],
+        ['API Integration', 'We connect the tools you already use so data flows automatically between them: payment gateways, M-Pesa, SMS and email services, accounting software, and third-party platforms, eliminating double entry and keeping every system in sync.']
+      ],
+      foot: 'Every project includes documentation, training, and post-launch support so your team can run with confidence.'
+    },
+    webapps: {
+      label: 'MOD II · WEBSITE & MOBILE APPS',
+      title: 'Fast, modern experiences<br/><span style="color:var(--primary);">on every screen.</span>',
+      intro: 'We build fast, scalable websites and mobile applications designed for performance, usability, and growth: from corporate sites and landing pages to full product apps.',
+      items: [
+        ['Corporate Websites', 'A professional website designed around your brand and your customers: clear structure, strong visuals, and content that positions you as the authority in your field. Every site loads fast, ranks well on search engines, works flawlessly on phones, and is built to turn visitors into enquiries and paying customers.'],
+        ['Android Applications', 'Native and cross-platform mobile apps built for real-world performance: smooth interfaces, offline handling, push notifications, and secure logins. We take you through the full journey, from concept and design to development, testing, and publishing on the Google Play Store.'],
+        ['Progressive Web Apps', 'App-like experiences that run straight from the browser: installable on the home screen, offline-capable, and instantly available without an app store download. A cost-effective way to give customers an app experience with one codebase for every device.'],
+        ['UI/UX Systems', 'Interfaces designed around real user journeys, not guesswork. We map how your users think and move, then design clean, consistent screens with a reusable design system that keeps your product coherent, accessible, and easy to extend as it grows.']
+      ],
+      foot: 'Every build is responsive, SEO-ready, and maintained after launch, from single pages to full platforms.'
+    },
+    erp: {
+      label: 'MOD III · ERP SYSTEMS',
+      title: 'One platform to run<br/><span style="color:var(--primary);">your whole operation.</span>',
+      intro: 'We develop ERP and management systems that centralize operations, staff, finances, inventory, and reporting into one platform your whole organization works from.',
+      items: [
+        ['School Management Systems', 'A complete platform for schools, colleges, and training institutions: admissions and student records, fee tracking and receipts, timetables, exams and report cards, and direct communication with parents. Administrators see the whole institution in one dashboard instead of a dozen spreadsheets.'],
+        ['Hospital Systems', 'Secure management of the entire patient journey: registration, appointments, consultations, lab and pharmacy workflows, billing, and insurance. Records stay accurate and confidential, queues move faster, and staff spend more time on care and less on paperwork.'],
+        ['Hotel Management Systems', 'Everything a hotel or guest house runs on in a single flow: room bookings and availability, front desk check-in and check-out, housekeeping schedules, restaurant orders, and consolidated billing, keeping the guest experience smooth from arrival to departure.'],
+        ['Business ERP Platforms', 'One system for the whole company: inventory and procurement, sales and invoicing, HR and payroll, accounting, and management reporting. Live dashboards show the state of the business at a glance, so decisions are based on numbers, not guesswork.']
+      ],
+      foot: 'Each ERP is configured to your workflows and comes with staff training, data migration, and ongoing support.'
+    },
+    saas: {
+      label: 'MOD IV · SAAS & CLOUD SOLUTIONS',
+      title: 'Cloud systems that<br/><span style="color:var(--primary);">scale with you.</span>',
+      intro: 'We build cloud-based SaaS platforms and infrastructure that scale with your business, offering reliability, performance, and secure foundations from day one.',
+      items: [
+        ['SaaS Platforms', 'Complete multi-tenant software products with everything a subscription business needs: user accounts and teams, plans and recurring billing, admin dashboards, and usage analytics. We take your idea from concept through launch to a platform that generates revenue.'],
+        ['Cloud Hosting', 'Deployment and management of your systems on reliable cloud infrastructure: SSL certificates, automated backups, uptime monitoring, and security updates handled for you. Your platform stays online, fast, and protected without you ever thinking about servers.'],
+        ['Database Systems', 'Well-structured databases designed for integrity and speed: clean schemas, indexing for fast queries, access controls that protect sensitive data, and tested backup and recovery strategies, so your information is always safe and always available.'],
+        ['Scalable Infrastructure', 'Architecture designed for growth from day one: load handling, caching, queueing, and performance optimization that keep response times low as traffic climbs, so a surge in users never becomes a system failure.']
+      ],
+      foot: 'We handle the full stack: architecture, deployment, monitoring, and scaling, so you can focus on the product.'
+    },
+    itsupport: {
+      label: 'MOD V · IT SUPPORT SERVICES',
+      title: 'Keeping your systems<br/><span style="color:var(--primary);">running.</span>',
+      intro: 'From everyday troubleshooting to full infrastructure care, we keep your technology working so you can focus on your business. We support businesses, institutions, offices, and homes: on-site across Nairobi and remotely wherever you are.',
+      items: [
+        ['System Maintenance', 'Proactive servicing that prevents downtime before it happens: operating system and software updates, security patching, performance tuning, storage clean-up, and scheduled health checks for your computers and servers.'],
+        ['Remote Support', 'Fast help without the wait. We connect securely to your machine and resolve issues in real time: software errors, email and account setup, slow systems, and day-to-day troubleshooting for your team.'],
+        ['Hardware & Software Fixes', 'Diagnosis and repair of desktops, laptops, and peripherals: component upgrades, operating system installation and recovery, plus software installation, licensing, and configuration.'],
+        ['Network Setup', 'Design and installation of reliable office and home networks: routers, Wi-Fi coverage, structured cabling, printers and shared devices, with ongoing network maintenance and security.']
+      ],
+      foot: 'Available as one-off fixes or ongoing monthly support plans, with 24/7 priority response for support-contract clients.'
+    }
+  };
+
+  var currentKey = null;
+
+  function showItem(i) {
+    var s = SERVICES[currentKey];
+    if (!s || !s.items[i]) return;
+    if (tabsEl) {
+      var tabs = tabsEl.querySelectorAll('.svc-modal-tab');
+      for (var t = 0; t < tabs.length; t++) tabs[t].classList.toggle('on', t === i);
+    }
+    if (itemEl) itemEl.innerHTML =
+      '<span class="idx" style="color:var(--primary);">0' + (i + 1) + ' / 0' + s.items.length + '</span>' +
+      '<h4>' + s.items[i][0] + '</h4>' +
+      '<p>' + s.items[i][1] + '</p>';
+  }
+
+  function fillModal(key, itemIdx) {
+    var s = SERVICES[key];
+    if (!s) return;
+    currentKey = key;
+    if (labelEl) labelEl.textContent = s.label;
+    if (titleEl) titleEl.innerHTML = s.title;
+    if (introEl) introEl.textContent = s.intro;
+    if (tabsEl) tabsEl.innerHTML = s.items.map(function (it, i) {
+      return '<button type="button" class="svc-modal-tab" data-i="' + i + '">' + it[0] + '</button>';
+    }).join('');
+    if (footEl) footEl.textContent = s.foot;
+    showItem(itemIdx || 0);
+  }
+
+  function openModal(key, itemIdx) {
+    fillModal(key, itemIdx);
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -531,8 +630,21 @@ function closeMob() {
     document.body.style.overflow = '';
   }
 
+  if (tabsEl) tabsEl.addEventListener('click', function (e) {
+    var b = e.target.closest('.svc-modal-tab');
+    if (b) showItem(parseInt(b.dataset.i, 10));
+  });
+
   document.querySelectorAll('[data-svc-modal]').forEach(function (row) {
-    row.addEventListener('click', openModal);
+    var key = row.getAttribute('data-svc-modal') || 'itsupport';
+    row.addEventListener('click', function () { openModal(key, 0); });
+    /* each tag in the row's dropdown opens the modal on its own item */
+    row.querySelectorAll('.tag').forEach(function (tag, i) {
+      tag.addEventListener('click', function (e) {
+        e.stopPropagation();
+        openModal(key, i);
+      });
+    });
   });
   if (closeBtn) closeBtn.addEventListener('click', closeModal);
   if (backdrop) backdrop.addEventListener('click', closeModal);
