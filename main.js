@@ -34,11 +34,11 @@ gsap.registerPlugin(ScrollTrigger);
       smallLabel: 'Click and Go'
     },
     {
-      img: 'images/projects/qibla%20homes.jpg',
-      alt: 'Qibla Homes',
-      href: 'https://qiblahomesltd.com/',
-      heroLabel: 'Qibla Homes',
-      smallLabel: 'Qibla Homes'
+      img: 'images/projects/east-africa-packaging.jpeg',
+      alt: 'East Africa Packaging Hub',
+      href: 'https://eastafricapackaginghub.co.ke/',
+      heroLabel: 'East Africa Packaging Hub',
+      smallLabel: 'EA Packaging Hub'
     }
   ];
 
