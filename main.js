@@ -20,11 +20,11 @@ gsap.registerPlugin(ScrollTrigger);
 (function() {
   var projects = [
     {
-      img: 'images/projects/covercloud.jpeg',
-      alt: 'Cover Cloud Limited',
-      href: 'https://www.covercloudlimited.com/',
-      heroLabel: 'Cover Cloud Limited',
-      smallLabel: 'Cover Cloud'
+      img: 'images/projects/alhajun.jpeg',
+      alt: 'Al Hajun Hajj & Umrah',
+      href: 'https://alhajunhajjandumrah.com/',
+      heroLabel: 'Al Hajun Hajj & Umrah',
+      smallLabel: 'Al Hajun Hajj'
     },
     {
       img: 'images/projects/click-and-go.jpeg',
