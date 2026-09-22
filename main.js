@@ -79,6 +79,47 @@ gsap.registerPlugin(ScrollTrigger);
   if (small2Link)  small2Link.href = small2.href;
 })();
 
+/* ── HERO BACKGROUND VIDEO ──
+   The <video> ships with no source, so the poster is all a phone ever
+   downloads. Sources are attached only when the clip is actually wanted. */
+(function() {
+  var vid = document.getElementById('hero-bg');
+  if (!vid || vid.tagName !== 'VIDEO') return;
+
+  var mqWide   = window.matchMedia('(min-width:768px)');
+  var mqMotion = window.matchMedia('(prefers-reduced-motion:reduce)');
+  var conn     = navigator.connection || {};
+  var thrifty  = conn.saveData === true || /(^|-)2g$/.test(conn.effectiveType || '');
+
+  if (!mqWide.matches || mqMotion.matches || thrifty) return;  /* poster stays */
+
+  [['webm', 'video/webm'], ['mp4', 'video/mp4']].forEach(function(pair) {
+    var url = vid.getAttribute('data-' + pair[0]);
+    if (!url) return;
+    var s = document.createElement('source');
+    s.src = url;
+    s.type = pair[1];
+    vid.appendChild(s);
+  });
+
+  vid.preload = 'auto';
+  vid.load();
+
+  var play = function() {
+    var p = vid.play();
+    if (p && p.catch) p.catch(function() {});  /* autoplay blocked -> poster stays */
+  };
+  play();
+
+  /* stop decoding once the hero is scrolled past */
+  var hero = document.getElementById('hero');
+  if (hero && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { e.isIntersecting ? play() : vid.pause(); });
+    }, { threshold: 0.05 }).observe(hero);
+  }
+})();
+
 /* ── CURSOR (desktop only) ── */
 if (window.matchMedia('(pointer:fine)').matches) {
   const cur  = document.getElementById('cursor');

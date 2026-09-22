@@ -698,6 +698,38 @@
     [data-theme="light"] .theme-btn .icon-sun { display:block; }
     [data-theme="light"] .theme-btn .icon-moon { display:none; }
 
+    /* ── HERO BACKGROUND VIDEO ── */
+    #hero-video-wrap {
+      position:absolute; inset:0; z-index:0;
+      overflow:hidden; pointer-events:none; user-select:none;
+    }
+    #hero-bg {
+      position:absolute;
+      /* oversized: GSAP drives y:100 parallax + ~18px mouse drift on this
+         element, so the extra bleed keeps an edge from ever showing */
+      top:-130px; left:-26px;
+      width:calc(100% + 52px); height:calc(100% + 160px);
+      object-fit:cover;
+      opacity:.45;
+      filter:saturate(.6) contrast(1.05) blur(1px);
+    }
+    .hero-vid-tint {
+      position:absolute; inset:0;
+      background:linear-gradient(140deg,rgba(7,20,20,.74) 0%,rgba(11,30,29,.64) 35%,rgba(8,8,9,.80) 100%);
+    }
+    .hero-vid-vignette {
+      position:absolute; inset:0;
+      background:radial-gradient(ellipse at 30% 40%,transparent 0%,rgba(6,6,8,.50) 75%);
+    }
+    /* light theme flips hero text dark, so the wash has to go light too */
+    [data-theme="light"] #hero-bg { opacity:.24; filter:saturate(.5) blur(1px); }
+    [data-theme="light"] .hero-vid-tint {
+      background:linear-gradient(140deg,rgba(255,255,255,.86) 0%,rgba(245,248,248,.80) 35%,rgba(255,255,255,.89) 100%);
+    }
+    [data-theme="light"] .hero-vid-vignette {
+      background:radial-gradient(ellipse at 30% 40%,transparent 0%,rgba(255,255,255,.6) 75%);
+    }
+
     /* ── HERO VISUAL PANEL ── */
     #hero-visual {
       position: absolute;
@@ -950,13 +982,22 @@
 <!-- ════════════ HERO ════════════ -->
 <section id="hero" class="relative h-screen flex flex-col justify-end px-5 sm:px-8 md:px-12 pb-12 md:pb-16 pt-28 overflow-hidden" style="position:sticky;top:0;z-index:1;">
 
-  <!-- Background Logo -->
-  <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
-    <img id="hero-bg"
-      src="images/favicon.png"
-      alt=""
-      decoding="async"
-      style="width:min(75vw,820px);opacity:.12;filter:blur(2px) saturate(.5);" />
+  <!-- Background Video -->
+  <div id="hero-video-wrap">
+    <video id="hero-bg"
+      poster="images/hero-poster.jpg"
+      muted
+      loop
+      playsinline
+      autoplay
+      preload="none"
+      aria-hidden="true"
+      tabindex="-1"
+      data-mp4="videos/hero.mp4"
+      data-webm="videos/hero.webm"></video>
+    <!-- tint + vignette keep the hero text legible over the footage -->
+    <div class="hero-vid-tint"></div>
+    <div class="hero-vid-vignette"></div>
   </div>
 
   <!-- ═══════════ HERO VISUAL PANEL ═══════════ -->

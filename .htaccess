@@ -158,6 +158,10 @@ ServerSignature Off
   ExpiresByType image/x-icon                   "access plus 1 year"
   ExpiresByType image/vnd.microsoft.icon      "access plus 1 year"
 
+  # Video — 1 year
+  ExpiresByType video/mp4                      "access plus 1 year"
+  ExpiresByType video/webm                     "access plus 1 year"
+
   # Fonts — 1 year
   ExpiresByType font/ttf                       "access plus 1 year"
   ExpiresByType font/otf                       "access plus 1 year"
@@ -217,6 +221,8 @@ ServerSignature Off
   AddType image/svg+xml                       .svg .svgz
   AddType image/webp                          .webp
   AddType image/avif                          .avif
+  AddType video/mp4                           .mp4
+  AddType video/webm                          .webm
   AddType font/woff                           .woff
   AddType font/woff2                          .woff2
   AddType font/ttf                            .ttf
