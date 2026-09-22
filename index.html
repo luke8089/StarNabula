@@ -644,9 +644,10 @@
     @media(min-width:1024px){ .proc-cell { padding:36px 32px; } }
 
     /* gallery masonry - CSS grid trick */
-    .gal-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
-    @media(min-width:640px){ .gal-grid { grid-template-columns:repeat(3,1fr); } }
+    .gal-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+    @media(min-width:640px){ .gal-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
     .gal-tall { grid-row:span 2; }
+    .gal-wide { grid-column:span 2; }
 
     /* magnetic */
     .mag { transition:transform .3s cubic-bezier(.23,1,.32,1); display:inline-flex; }
@@ -1872,19 +1873,24 @@
       <p class="text-white/28 text-xs max-w-xs text-right hidden sm:block r-right" style="color:rgba(255,255,255,.28);">A curated look at our creative process, studio life, and completed work.</p>
     </div>
     <div class="gal-grid">
-      <div class="gallery-item zoom-wrap" style="aspect-ratio:1/1;border-radius:3px;overflow:hidden;background:#0d0d10;">
+      <div class="gallery-item zoom-wrap gal-wide r-up" style="aspect-ratio:1000/707;border-radius:3px;overflow:hidden;background:#0d0d10;">
+        <div class="inner w-full h-full" style="overflow:hidden;position:relative;">
+          <img src="images/projects/gallery-brochure-1.jpeg" alt="School management system brochure - cover and about" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;" />
+        </div>
+      </div>
+      <div class="gallery-item zoom-wrap" style="border-radius:3px;overflow:hidden;background:#0d0d10;min-height:200px;">
         <div class="inner w-full h-full" style="overflow:hidden;position:relative;">
           <img src="images/projects/gallery-office.jpeg" alt="StarNabula office" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;" />
         </div>
       </div>
-      <div class="gallery-item zoom-wrap gal-tall r-up" style="border-radius:3px;overflow:hidden;background:#0d0d10;min-height:200px;">
-        <div class="inner w-full h-full" style="overflow:hidden;position:relative;">
-          <img src="images/projects/gallery-developer.jpeg" alt="Developer at work" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;" />
+      <div class="gallery-item zoom-wrap" style="border-radius:3px;overflow:hidden;background:linear-gradient(135deg,#0d0d10,#161620);position:relative;min-height:200px;">
+        <div class="inner w-full h-full flex items-center justify-center" style="position:absolute;inset:0;">
+          <img src="images/logo.png" alt="StarNabula logo" loading="lazy" decoding="async" style="height:55%;width:auto;filter:drop-shadow(0 0 24px rgba(21,161,154,.4));" />
         </div>
       </div>
-      <div class="gallery-item zoom-wrap" style="aspect-ratio:1/1;border-radius:3px;overflow:hidden;background:linear-gradient(135deg,#0d0d10,#161620);position:relative;">
-        <div class="inner w-full h-full flex items-center justify-center">
-          <img src="images/logo.png" alt="StarNabula logo" loading="lazy" decoding="async" style="height:55%;width:auto;filter:drop-shadow(0 0 24px rgba(21,161,154,.4));" />
+      <div class="gallery-item zoom-wrap gal-wide r-up" style="aspect-ratio:1000/707;border-radius:3px;overflow:hidden;background:#0d0d10;">
+        <div class="inner w-full h-full" style="overflow:hidden;position:relative;">
+          <img src="images/projects/gallery-brochure-2.jpeg" alt="School management system brochure - services and features" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;" />
         </div>
       </div>
       <div class="gallery-item zoom-wrap" style="aspect-ratio:4/3;border-radius:3px;overflow:hidden;background:#0d0d10;">
@@ -1897,7 +1903,7 @@
           <img src="images/logo.png" alt="" loading="lazy" decoding="async" style="height:50px;opacity:.15;filter:saturate(.4);" />
         </div>
       </div>
-      <div class="gallery-item zoom-wrap" style="aspect-ratio:1/1;background:linear-gradient(135deg,#100a0a,#1e1010);border-radius:3px;">
+      <div class="gallery-item zoom-wrap" style="aspect-ratio:4/3;background:linear-gradient(135deg,#100a0a,#1e1010);border-radius:3px;">
         <div class="inner w-full h-full flex items-center justify-center" style="filter:grayscale(30%);">
           <img src="images/logo.png" alt="" loading="lazy" decoding="async" style="height:50px;opacity:.15;filter:saturate(.4);" />
         </div>
