@@ -1003,22 +1003,26 @@
   <!-- ═══════════ HERO VISUAL PANEL ═══════════ -->
   <div id="hero-visual">
 
-    <!-- Atmospheric Background -->
-    <div style="position:absolute;inset:0;background:linear-gradient(140deg,#071414 0%,#0B1E1D 30%,#102928 65%,#080809 100%);"></div>
+    <!-- Atmospheric Background (translucent so the hero video reads through) -->
+    <div style="position:absolute;inset:0;background:linear-gradient(140deg,rgba(7,20,20,.55) 0%,rgba(11,30,29,.48) 30%,rgba(16,41,40,.44) 65%,rgba(8,8,9,.62) 100%);"></div>
 
     <!-- Top Glow -->
-    <div style="position:absolute;top:-20%;left:5%;width:60%;height:60%;background:radial-gradient(circle,rgba(21,161,154,.16) 0%,transparent 65%);pointer-events:none;"></div>
+    <div style="position:absolute;top:-20%;left:5%;width:60%;height:60%;background:radial-gradient(circle,rgba(21,161,154,.10) 0%,transparent 65%);pointer-events:none;"></div>
 
     <!-- Bottom Glow -->
-    <div style="position:absolute;bottom:5%;right:0%;width:65%;height:55%;background:radial-gradient(circle,rgba(15,127,121,.18) 0%,transparent 65%);pointer-events:none;"></div>
+    <div style="position:absolute;bottom:5%;right:0%;width:65%;height:55%;background:radial-gradient(circle,rgba(15,127,121,.11) 0%,transparent 65%);pointer-events:none;"></div>
 
     <!-- Grid Texture -->
     <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);background-size:56px 56px;pointer-events:none;"></div>
 
     <!-- Watermark Logo -->
-    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:72%;opacity:.5;pointer-events:none;">
+    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:72%;opacity:.24;pointer-events:none;">
       <img src="images/favicon.png" style="width:100%;height:auto;" alt="" />
     </div>
+
+    <!-- Legibility scrim: keeps the display text and stats readable over the
+         footage without darkening the upper half of the panel -->
+    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(5,10,10,.78) 0%,rgba(5,10,10,.40) 30%,transparent 60%);pointer-events:none;"></div>
 
     <!-- Main Display Text -->
     <div class="hv-text"
