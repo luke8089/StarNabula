@@ -709,6 +709,9 @@
          element, so the extra bleed keeps an edge from ever showing */
       top:-130px; left:-26px;
       width:calc(100% + 52px); height:calc(100% + 160px);
+      /* Tailwind preflight sets img,video{max-width:100%}, which clamped the
+         width back to 100% and left the right edge uncovered */
+      max-width:none; max-height:none;
       object-fit:cover;
       opacity:.45;
       filter:saturate(.6) contrast(1.05) blur(1px);
