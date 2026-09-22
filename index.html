@@ -730,6 +730,12 @@
       background:radial-gradient(ellipse at 30% 40%,transparent 0%,rgba(255,255,255,.6) 75%);
     }
 
+    /* on phones the star crowds the panel - drop it and let the
+       footage carry the background instead */
+    @media(max-width:767px) {
+      .hv-watermark { display:none; }
+    }
+
     /* ── HERO VISUAL PANEL ── */
     #hero-visual {
       position: absolute;
@@ -1012,8 +1018,8 @@
     <!-- Bottom Glow -->
     <div style="position:absolute;bottom:5%;right:0%;width:65%;height:55%;background:radial-gradient(circle,rgba(15,127,121,.11) 0%,transparent 65%);pointer-events:none;"></div>
 
-    <!-- Watermark Logo -->
-    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:72%;opacity:.24;pointer-events:none;">
+    <!-- Watermark Logo (hidden on phones so the footage reads instead) -->
+    <div class="hv-watermark" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:72%;opacity:.24;pointer-events:none;">
       <img src="images/favicon.png" style="width:100%;height:auto;" alt="" />
     </div>
 

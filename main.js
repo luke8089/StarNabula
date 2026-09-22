@@ -80,18 +80,19 @@ gsap.registerPlugin(ScrollTrigger);
 })();
 
 /* ── HERO BACKGROUND VIDEO ──
-   The <video> ships with no source, so the poster is all a phone ever
-   downloads. Sources are attached only when the clip is actually wanted. */
+   The <video> ships with no source; sources are attached here so the
+   poster is the only thing that loads when the clip isn't wanted.
+   Plays on phones too, but still bails out for reduced-motion and for
+   anyone on Save-Data or a 2G-class connection. */
 (function() {
   var vid = document.getElementById('hero-bg');
   if (!vid || vid.tagName !== 'VIDEO') return;
 
-  var mqWide   = window.matchMedia('(min-width:768px)');
   var mqMotion = window.matchMedia('(prefers-reduced-motion:reduce)');
   var conn     = navigator.connection || {};
   var thrifty  = conn.saveData === true || /(^|-)2g$/.test(conn.effectiveType || '');
 
-  if (!mqWide.matches || mqMotion.matches || thrifty) return;  /* poster stays */
+  if (mqMotion.matches || thrifty) return;  /* poster stays */
 
   [['webm', 'video/webm'], ['mp4', 'video/mp4']].forEach(function(pair) {
     var url = vid.getAttribute('data-' + pair[0]);
