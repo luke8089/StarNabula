@@ -41,6 +41,7 @@
     .theme-btn:hover { border-color:var(--muted); color:var(--fg); }
     .icon-sun { display:none; }
     .icon-moon { display:block; }
+    html:not([data-theme="light"]) .logo-l, [data-theme="light"] .logo-d { display:none !important; }
     [data-theme="light"] .icon-sun { display:block; }
     [data-theme="light"] .icon-moon { display:none; }
 
@@ -76,7 +77,8 @@
 
 <nav>
   <a href="/" class="nav-logo">
-    <img src="images/logo.png" alt="StarNabula" />
+    <img class="logo-d" src="images/logo.png" alt="StarNabula" />
+    <img class="logo-l" src="images/logo-dark.png" alt="StarNabula" />
   </a>
   <div class="nav-links">
     <a href="/">Home</a>

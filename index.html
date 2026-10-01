@@ -729,13 +729,10 @@
       background:radial-gradient(ellipse at 30% 40%,transparent 0%,rgba(6,6,8,.50) 75%);
     }
     /* light theme flips hero text dark, so the wash has to go light too */
-    [data-theme="light"] #hero-bg { opacity:.24; filter:saturate(.5) blur(1px); }
-    [data-theme="light"] .hero-vid-tint {
-      background:linear-gradient(140deg,rgba(255,255,255,.86) 0%,rgba(245,248,248,.80) 35%,rgba(255,255,255,.89) 100%);
-    }
-    [data-theme="light"] .hero-vid-vignette {
-      background:radial-gradient(ellipse at 30% 40%,transparent 0%,rgba(255,255,255,.6) 75%);
-    }
+    [data-theme="light"] #hero-bg { opacity:.6; filter:saturate(.75) blur(1px); }
+    /* no white wash in light mode - let the footage show as-is */
+    [data-theme="light"] .hero-vid-tint,
+    [data-theme="light"] .hero-vid-vignette { background:none; }
 
     /* on phones the star crowds the panel - drop it and let the
        footage carry the background instead */
@@ -881,15 +878,28 @@
     [data-theme="light"] #ld-num { color:var(--muted-1) !important; }
 
     /* Inline white bg dividers (hero visual stats separators stay untouched) */
-    [data-theme="light"] #hv-stats [style*="background:rgba(255,255,255,"] { background:rgba(255,255,255,.08) !important; }
 
     /* Hero section - grey background instead of cream/white */
     [data-theme="light"] #hero { background: #c4c5c7 !important; }
 
-    /* Hero-visual panel stays dark - force all its text white so it remains readable */
-    [data-theme="light"] #hero-visual { color: rgba(255,255,255,.9); }
-    /* Prevent the global #hero inline-color override from darkening hero-visual text */
-    [data-theme="light"] #hero-visual [style*="color:rgba(255,255,255,"] { color: inherit !important; }
+    /* Logos: white-text version on dark, dark-text twin on light */
+    html:not([data-theme="light"]) .logo-l, [data-theme="light"] .logo-d { display:none !important; }
+    [data-theme="light"] .logo-l { filter:none !important; }
+
+    /* Hero-visual panel is see-through in light mode (its dark layers are
+       reverted above), so its text has to go dark to stay readable */
+    [data-theme="light"] #hero-visual { color:var(--fg); }
+    [data-theme="light"] #hero-visual [style*="color:rgba(255,255,255,"] { color:var(--muted-3) !important; }
+    [data-theme="light"] #hero-visual [style*="color:#fff"] { color:var(--fg) !important; }
+    [data-theme="light"] #hv-stats [style*="background:rgba(255,255,255,"] { background:rgba(0,0,0,.12) !important; }
+    [data-theme="light"] #hero-visual .view-work-btn { border-color:rgba(0,0,0,.18) !important; }
+    [data-theme="light"] #hero-visual .view-work-btn:hover { color:var(--fg) !important; border-color:rgba(0,0,0,.4) !important; }
+    [data-theme="light"] .cr-letter,
+    [data-theme="light"] #studio-word { background:linear-gradient(165deg,#111110 0%,#005dfd 100%); -webkit-background-clip:text; background-clip:text; }
+    [data-theme="light"] .hv-watermark { opacity:.07 !important; }
+    /* the faintest panel labels stay faint (they were near-invisible on dark) */
+    [data-theme="light"] #hero-visual [style*="color:rgba(255,255,255,.18)"] { color:rgba(0,0,0,.3) !important; }
+    [data-theme="light"] .gal-logo-tile { background:var(--card-img-bg) !important; }
   </style>
 </head>
 <body>
@@ -900,7 +910,8 @@
 
 <!-- ── LOADER ── -->
 <div id="loader" style="position:fixed;inset:0;background:#080809;z-index:9000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;">
-  <img src="images/logo.png" style="height:clamp(120px,20vw,220px);width:auto;opacity:.95;filter:drop-shadow(0 0 40px rgba(77,141,255,.45));" alt="StarNabula" fetchpriority="high" decoding="sync" />
+  <img class="logo-d" src="images/logo.png" style="height:clamp(120px,20vw,220px);width:auto;opacity:.95;filter:drop-shadow(0 0 40px rgba(77,141,255,.45));" alt="StarNabula" fetchpriority="high" decoding="sync" />
+  <img class="logo-l" src="images/logo-dark.png" style="height:clamp(120px,20vw,220px);width:auto;opacity:.95;filter:drop-shadow(0 0 40px rgba(77,141,255,.45));" alt="StarNabula" decoding="async" />
   <div style="width:180px;height:1px;background:rgba(255,255,255,.08);overflow:hidden;">
     <div id="ld-fill" style="height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--blue));transition:width .05s linear;"></div>
   </div>
@@ -949,7 +960,8 @@
 <!-- ════════════ NAV ════════════ -->
 <nav id="main-nav" role="navigation" aria-label="Main navigation" style="position:fixed;top:0;left:0;right:0;z-index:100;opacity:0;" class="px-5 sm:px-8 md:px-12 py-5 flex items-center justify-between">
   <a href="#hero" style="flex-shrink:0;">
-    <img src="images/logo.png" alt="StarNabula" fetchpriority="high" decoding="sync" style="height:32px;width:auto;" />
+    <img class="logo-d" src="images/logo.png" alt="StarNabula" fetchpriority="high" decoding="sync" style="height:32px;width:auto;" />
+    <img class="logo-l" src="images/logo-dark.png" alt="StarNabula" decoding="async" style="height:32px;width:auto;" />
   </a>
 
   <!-- desktop links -->
@@ -1141,7 +1153,13 @@
 
     <!-- Logo -->
     <div style="margin-bottom:1.8rem;">
-      <img src="images/logo.png"
+      <img class="logo-d" src="images/logo.png"
+        alt="StarNabula"
+        style="height:clamp(80px,12vw,160px);
+        width:auto;
+        display:block;
+        filter:drop-shadow(0 0 32px rgba(0,93,253,.45));" />
+      <img class="logo-l" src="images/logo-dark.png"
         alt="StarNabula"
         style="height:clamp(80px,12vw,160px);
         width:auto;
@@ -1710,7 +1728,7 @@
       <div class="md:col-span-5">
         <div class="relative about-deco-wrap">
           <div id="about-img" style="aspect-ratio:3/4;background:linear-gradient(135deg,#0e0e14,#1a1a24);border-radius:3px;overflow:hidden;position:relative;">
-            <img src="images/logo.png" alt="StarNabula" loading="lazy" decoding="async" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:65%;opacity:.22;filter:saturate(.5);" />
+            <img src="images/favicon.png" alt="StarNabula" loading="lazy" decoding="async" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:65%;opacity:.22;filter:saturate(.5);" />
             <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(6,6,8,.72) 0%,transparent 60%);"></div>
             <div style="position:absolute;bottom:18px;left:18px;">
               <span class="idx block mb-1">NAIROBI, KENYA</span>
@@ -1853,7 +1871,7 @@
       <div class="pi r-up" data-cat="techsupport">
         <div class="zoom-wrap" style="aspect-ratio:1/1;background:linear-gradient(135deg,#0a0d16,#101828);border-radius:3px;position:relative;">
           <div class="inner w-full h-full flex items-center justify-center" style="filter:grayscale(25%);">
-            <img src="images/logo.png" alt="" loading="lazy" decoding="async" style="height:40px;opacity:.13;filter:saturate(.3);" />
+            <img src="images/favicon.png" alt="" loading="lazy" decoding="async" style="height:40px;opacity:.13;filter:saturate(.3);" />
           </div>
           <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 55%);border-radius:3px;"></div>
           <div style="position:absolute;bottom:10px;left:10px;"><span class="tag" style="font-size:.58rem;padding:2px 7px;">Tech Support</span><p class="text-white font-bold text-xs mt-1">Event Brochure</p></div>
@@ -1896,7 +1914,7 @@
       <div class="pi r-up" data-cat="techsupport">
         <div class="zoom-wrap" style="aspect-ratio:1/1;background:linear-gradient(135deg,#100d08,#201a10);border-radius:3px;position:relative;">
           <div class="inner w-full h-full flex items-center justify-center" style="filter:grayscale(25%);">
-            <img src="images/logo.png" alt="" loading="lazy" decoding="async" style="height:40px;opacity:.13;filter:saturate(.3);" />
+            <img src="images/favicon.png" alt="" loading="lazy" decoding="async" style="height:40px;opacity:.13;filter:saturate(.3);" />
           </div>
           <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 55%);border-radius:3px;"></div>
           <div style="position:absolute;bottom:10px;left:10px;"><span class="tag" style="font-size:.58rem;padding:2px 7px;">Tech Support</span><p class="text-white font-bold text-xs mt-1">Packaging Design</p></div>
@@ -1938,9 +1956,10 @@
           <img src="images/projects/gallery-office.jpeg" alt="StarNabula office" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;" />
         </div>
       </div>
-      <div class="gallery-item zoom-wrap" style="border-radius:3px;overflow:hidden;background:linear-gradient(135deg,#0d0d10,#161620);position:relative;min-height:200px;">
+      <div class="gallery-item zoom-wrap gal-logo-tile" style="border-radius:3px;overflow:hidden;background:linear-gradient(135deg,#0d0d10,#161620);position:relative;min-height:200px;">
         <div class="inner w-full h-full flex items-center justify-center" style="position:absolute;inset:0;">
-          <img src="images/logo.png" alt="StarNabula logo" loading="lazy" decoding="async" style="width:74%;height:auto;max-height:70%;object-fit:contain;filter:drop-shadow(0 0 24px rgba(0,93,253,.4));" />
+          <img class="logo-d" src="images/logo.png" alt="StarNabula logo" loading="lazy" decoding="async" style="width:74%;height:auto;max-height:70%;object-fit:contain;filter:drop-shadow(0 0 24px rgba(0,93,253,.4));" />
+          <img class="logo-l" src="images/logo-dark.png" alt="StarNabula logo" loading="lazy" decoding="async" style="width:74%;height:auto;max-height:70%;object-fit:contain;filter:drop-shadow(0 0 24px rgba(0,93,253,.4));" />
         </div>
       </div>
       <div class="gallery-item zoom-wrap gal-wide r-up" style="aspect-ratio:1000/707;border-radius:3px;overflow:hidden;background:#0d0d10;">
@@ -1960,7 +1979,7 @@
       </div>
       <div class="gallery-item zoom-wrap" style="aspect-ratio:4/3;background:linear-gradient(135deg,#100a0a,#1e1010);border-radius:3px;">
         <div class="inner w-full h-full flex items-center justify-center" style="filter:grayscale(30%);">
-          <img src="images/logo.png" alt="" loading="lazy" decoding="async" style="height:50px;opacity:.15;filter:saturate(.4);" />
+          <img src="images/favicon.png" alt="" loading="lazy" decoding="async" style="height:50px;opacity:.15;filter:saturate(.4);" />
         </div>
       </div>
     </div>
@@ -2078,7 +2097,8 @@
 <footer role="contentinfo" class="px-5 sm:px-8 md:px-12 py-10 md:py-12" style="border-top:1px solid rgba(255,255,255,.07);">
   <div class="max-w-6xl mx-auto">
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8 md:mb-10">
-      <img src="images/logo.png" alt="StarNabula" loading="lazy" decoding="async" class="mx-auto sm:mx-0" style="height:clamp(100px,18vw,180px);width:auto;display:block;opacity:.85;" />
+      <img class="logo-d mx-auto sm:mx-0" src="images/logo.png" alt="StarNabula" loading="lazy" decoding="async" style="height:clamp(100px,18vw,180px);width:auto;display:block;opacity:.85;" />
+      <img class="logo-l mx-auto sm:mx-0" src="images/logo-dark.png" alt="StarNabula" loading="lazy" decoding="async" style="height:clamp(100px,18vw,180px);width:auto;display:block;opacity:.85;" />
       <div class="flex flex-wrap gap-6 text-xs font-bold tracking-widest uppercase" style="color:rgba(255,255,255,.3);">
         <a href="#hero"      class="hover:text-white transition-colors">Home</a>
         <a href="#about"     class="hover:text-white transition-colors">About</a>
