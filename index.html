@@ -788,6 +788,40 @@
     }
 
 
+    /* phones: put the panel in the hero's flex column so it always ends
+       above the logo instead of sliding under it, and keep the stats row
+       out of the bottom fade and inside the screen width */
+    @media(max-width:767px) {
+      #hero-visual {
+        position:relative; top:auto; bottom:auto; left:auto; right:auto;
+        flex:1 1 auto; min-height:220px;
+        margin:calc(68px - 7rem) -1.25rem 14px;   /* undo #hero pt-28 / px-5 */
+        -webkit-mask-image:
+          linear-gradient(to right,  transparent 0%, black 9%, black 91%, transparent 100%),
+          linear-gradient(to bottom, transparent 0%, black 18%, black calc(100% - 8px), transparent 100%);
+        mask-image:
+          linear-gradient(to right,  transparent 0%, black 9%, black 91%, transparent 100%),
+          linear-gradient(to bottom, transparent 0%, black 18%, black calc(100% - 8px), transparent 100%);
+      }
+      #hv-stats { bottom:10px !important; padding:0 1.25rem !important; gap:8px !important; }
+      #hv-stats > div { gap:10px !important; }
+      #hv-stats .view-work-btn { padding:6px 10px !important; letter-spacing:.1em !important; }
+      .hv-text { bottom:62px !important; right:1.25rem !important; }
+    }
+    @media(max-width:400px) {
+      #hv-stats > div { gap:7px !important; }
+      #hv-stats .view-work-btn { padding:5px 8px !important; letter-spacing:.06em !important; font-size:.55rem !important; gap:4px !important; }
+    }
+    @media(max-width:350px) {
+      #hv-stats .view-work-btn svg { display:none; }
+      #hv-stats > div > div > p:first-child { font-size:.9rem !important; }
+    }
+    @media(min-width:640px) and (max-width:767px) {
+      #hero-visual { margin-inline:-2rem; }   /* sm:px-8 */
+      #hv-stats, .hv-text { padding-inline:2rem !important; }
+      .hv-text { right:0 !important; }
+    }
+
     /* ── mobile fixes ── */
     @media(max-width:639px) {
       /* clip about-section deco boxes so they don't bleed past viewport */
