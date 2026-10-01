@@ -807,6 +807,13 @@
       #hv-stats > div { gap:10px !important; }
       #hv-stats .view-work-btn { padding:6px 10px !important; letter-spacing:.1em !important; }
       .hv-text { bottom:62px !important; right:1.25rem !important; }
+      /* the panel's dark layers stop above the logo; carry the same depth
+         down behind the logo, heading and tagline so no edge shows */
+      html:not([data-theme="light"]) .hero-vid-vignette {
+        background:
+          linear-gradient(to bottom, transparent calc(100% - 640px), rgba(6,6,8,.86) calc(100% - 430px), rgba(6,6,8,.88) 100%),
+          radial-gradient(ellipse at 30% 40%,transparent 0%,rgba(6,6,8,.50) 75%);
+      }
     }
     @media(max-width:400px) {
       #hv-stats > div { gap:7px !important; }
