@@ -34,12 +34,15 @@
 
   <!-- ═══════════════════════════════════════════
        SEARCH ENGINE VERIFICATION
-       Replace placeholder values with real codes from each platform's dashboard
+       Google is verified by file: /googleccd1092fca2a1e8d.html
+       For Bing / Yandex / Pinterest, paste the real code from each
+       dashboard into the matching tag below and uncomment it.
+       Do NOT ship placeholder values - an invalid token is worse
+       than no tag at all.
   ════════════════════════════════════════════ -->
-  <meta name="google-site-verification" content="REPLACE_WITH_GOOGLE_SEARCH_CONSOLE_CODE" />
-  <meta name="msvalidate.01" content="REPLACE_WITH_BING_WEBMASTER_CODE" />
-  <meta name="yandex-verification" content="REPLACE_WITH_YANDEX_CODE" />
-  <meta name="p:domain_verify" content="REPLACE_WITH_PINTEREST_CODE" />
+  <!-- <meta name="msvalidate.01" content="" /> -->
+  <!-- <meta name="yandex-verification" content="" /> -->
+  <!-- <meta name="p:domain_verify" content="" /> -->
 
   <!-- ═══════════════════════════════════════════
        GEO & LANGUAGE
@@ -77,7 +80,8 @@
   <meta property="og:country-name" content="Kenya" />
   <meta property="og:updated_time" content="2026-05-19T00:00:00+03:00" />
   <meta property="article:publisher" content="" />
-  <meta property="fb:app_id" content="REPLACE_WITH_FACEBOOK_APP_ID" />
+  <!-- Set only if you have a real Facebook App ID -->
+  <!-- <meta property="fb:app_id" content="" /> -->
 
   <!-- ═══════════════════════════════════════════
        TWITTER / X CARD - Rich card with label pairs
@@ -111,7 +115,7 @@
   <link rel="apple-touch-icon" sizes="144x144" href="images/favicon.png" />
   <link rel="apple-touch-icon" sizes="152x152" href="images/favicon.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="images/favicon.png" />
-  <link rel="mask-icon" href="images/favicon.png" color="#15a19a" />
+  <link rel="mask-icon" href="images/favicon.png" color="#005dfd" />
   <meta name="msapplication-TileImage" content="images/favicon.png" />
   <meta name="msapplication-TileColor" content="#080809" />
   <meta name="msapplication-square70x70logo" content="images/favicon.png" />
@@ -488,7 +492,7 @@
   <style>
     /* ── THEME VARIABLES ── */
     :root {
-      --red:#15a19a; --blue:#1a8fe3; --primary:#15a19a;
+      --red:#005dfd; --blue:#4d8dff; --primary:#005dfd;
       --bg:#080809; --bg-alt:#060608; --bg-dd:#0d0d11; --card-img-bg:#0d0d10;
       --fg:#f0f0ee;
       --border:rgba(255,255,255,.07); --border-md:rgba(255,255,255,.1); --border-lg:rgba(255,255,255,.14);
@@ -577,7 +581,7 @@
     .svc-row { border-top:1px solid var(--border); transition:border-color .35s; }
     .svc-row:last-child { border-bottom:1px solid var(--border); }
     .svc-row:hover { border-color:var(--svc-stroke-h); }
-    .svc-num { font-size:clamp(1.6rem,7vw,6rem); font-weight:900; line-height:1; color:transparent; -webkit-text-stroke:1px #15a19a; transition:color .35s,-webkit-text-stroke .35s; }
+    .svc-num { font-size:clamp(1.6rem,7vw,6rem); font-weight:900; line-height:1; color:transparent; -webkit-text-stroke:1px #005dfd; transition:color .35s,-webkit-text-stroke .35s; }
     .svc-row:hover .svc-num { -webkit-text-stroke-color:var(--svc-stroke-h); }
     .svc-arrow { transition:transform .4s cubic-bezier(.23,1,.32,1); }
     .svc-row:hover .svc-arrow { transform:rotate(0deg) !important; }
@@ -655,7 +659,7 @@
     /* cr-letter spans - each letter of CREATIVE */
     .cr-letter, #studio-word {
       display: inline-block;
-      background: linear-gradient(165deg, #fff 0%, rgba(26,143,227,.6) 100%);
+      background: linear-gradient(165deg, #fff 0%, rgba(77,141,255,.6) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -718,7 +722,7 @@
     }
     .hero-vid-tint {
       position:absolute; inset:0;
-      background:linear-gradient(140deg,rgba(7,20,20,.74) 0%,rgba(11,30,29,.64) 35%,rgba(8,8,9,.80) 100%);
+      background:linear-gradient(140deg,rgba(4,12,30,.74) 0%,rgba(6,18,44,.64) 35%,rgba(8,8,9,.80) 100%);
     }
     .hero-vid-vignette {
       position:absolute; inset:0;
@@ -896,7 +900,7 @@
 
 <!-- ── LOADER ── -->
 <div id="loader" style="position:fixed;inset:0;background:#080809;z-index:9000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;">
-  <img src="images/logo.png" style="height:clamp(120px,20vw,220px);width:auto;opacity:.95;filter:drop-shadow(0 0 40px rgba(26,143,227,.45));" alt="StarNabula" fetchpriority="high" decoding="sync" />
+  <img src="images/logo.png" style="height:clamp(120px,20vw,220px);width:auto;opacity:.95;filter:drop-shadow(0 0 40px rgba(77,141,255,.45));" alt="StarNabula" fetchpriority="high" decoding="sync" />
   <div style="width:180px;height:1px;background:rgba(255,255,255,.08);overflow:hidden;">
     <div id="ld-fill" style="height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--blue));transition:width .05s linear;"></div>
   </div>
@@ -1013,13 +1017,13 @@
   <div id="hero-visual">
 
     <!-- Atmospheric Background (translucent so the hero video reads through) -->
-    <div style="position:absolute;inset:0;background:linear-gradient(140deg,rgba(7,20,20,.55) 0%,rgba(11,30,29,.48) 30%,rgba(16,41,40,.44) 65%,rgba(8,8,9,.62) 100%);"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(140deg,rgba(4,12,30,.55) 0%,rgba(6,18,44,.48) 30%,rgba(9,26,62,.44) 65%,rgba(8,8,9,.62) 100%);"></div>
 
     <!-- Top Glow -->
-    <div style="position:absolute;top:-20%;left:5%;width:60%;height:60%;background:radial-gradient(circle,rgba(21,161,154,.10) 0%,transparent 65%);pointer-events:none;"></div>
+    <div style="position:absolute;top:-20%;left:5%;width:60%;height:60%;background:radial-gradient(circle,rgba(0,93,253,.10) 0%,transparent 65%);pointer-events:none;"></div>
 
     <!-- Bottom Glow -->
-    <div style="position:absolute;bottom:5%;right:0%;width:65%;height:55%;background:radial-gradient(circle,rgba(15,127,121,.11) 0%,transparent 65%);pointer-events:none;"></div>
+    <div style="position:absolute;bottom:5%;right:0%;width:65%;height:55%;background:radial-gradient(circle,rgba(0,72,196,.11) 0%,transparent 65%);pointer-events:none;"></div>
 
     <!-- Watermark Logo (hidden on phones so the footage reads instead) -->
     <div class="hv-watermark" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:72%;opacity:.24;pointer-events:none;">
@@ -1028,7 +1032,7 @@
 
     <!-- Legibility scrim: keeps the display text and stats readable over the
          footage without darkening the upper half of the panel -->
-    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(5,10,10,.78) 0%,rgba(5,10,10,.40) 30%,transparent 60%);pointer-events:none;"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(3,7,18,.78) 0%,rgba(3,7,18,.40) 30%,transparent 60%);pointer-events:none;"></div>
 
     <!-- Main Display Text -->
     <div class="hv-text"
@@ -1056,7 +1060,7 @@
 
         <span id="studio-word">SOLUTIONS</span>
 
-        <span style="background:linear-gradient(155deg,#15A19A 0%,rgba(21,161,154,.45) 100%);
+        <span style="background:linear-gradient(155deg,#005dfd 0%,rgba(0,93,253,.45) 100%);
         -webkit-background-clip:text;
         -webkit-text-fill-color:transparent;
         background-clip:text;">®</span>
@@ -1142,7 +1146,7 @@
         style="height:clamp(80px,12vw,160px);
         width:auto;
         display:block;
-        filter:drop-shadow(0 0 32px rgba(21,161,154,.45));" />
+        filter:drop-shadow(0 0 32px rgba(0,93,253,.45));" />
     </div>
 
     <!-- Top Labels -->
@@ -1152,7 +1156,7 @@
         001 · HERO
       </span>
 
-      <span class="idx" style="color:#15A19A;">
+      <span class="idx" style="color:#005dfd;">
         NAIROBI, KENYA · EST. 2020
       </span>
 
@@ -1171,7 +1175,7 @@
         <span class="block"
           id="hl2"
           style="color:transparent;
-          -webkit-text-stroke:clamp(1px,.2vw,2px) #15A19A;">
+          -webkit-text-stroke:clamp(1px,.2vw,2px) #005dfd;">
 
           NABUL
 
@@ -1655,7 +1659,7 @@
         <p class="text-white/38 text-sm leading-relaxed" style="color:rgba(255,255,255,.38);">We define the system requirements, workflows, and architecture needed to deliver a scalable and efficient solution.</p>
       </div>
       <div class="proc-cell r-up">
-        <p class="text-4xl font-black mb-5" style="color:rgba(26,143,227,.12);">03</p>
+        <p class="text-4xl font-black mb-5" style="color:rgba(77,141,255,.12);">03</p>
         <h3 class="font-bold text-base mb-2">Build</h3>
         <p class="text-white/38 text-sm leading-relaxed" style="color:rgba(255,255,255,.38);">We develop software systems, websites, and applications using modern technologies focused on performance and reliability.</p>
       </div>
@@ -1672,27 +1676,27 @@
 <div id="ticker-2" class="overflow-hidden py-3.5" style="border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);">
   <div class="marquee-track rev" style="gap:0;">
 
-    <span style="font-size:.65rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding:0 20px;color:rgba(21,161,154,.35);">Software Development</span><span class="idx px-2">·</span>
+    <span style="font-size:.65rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding:0 20px;color:rgba(0,93,253,.35);">Software Development</span><span class="idx px-2">·</span>
 
     <span style="font-size:.65rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding:0 20px;color:rgba(255,255,255,.35);">ERP Systems</span><span class="idx px-2">·</span>
 
-    <span style="font-size:.65rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding:0 20px;color:rgba(15,127,121,.35);">SaaS Solutions</span><span class="idx px-2">·</span>
+    <span style="font-size:.65rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding:0 20px;color:rgba(0,72,196,.35);">SaaS Solutions</span><span class="idx px-2">·</span>
 
     <span style="font-size:.65rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding:0 20px;color:rgba(255,255,255,.30);">Web Applications</span><span class="idx px-2">·</span>
 
-    <span style="font-size:.65rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding:0 20px;color:rgba(21,161,154,.35);">Mobile Apps</span><span class="idx px-2">·</span>
+    <span style="font-size:.65rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding:0 20px;color:rgba(0,93,253,.35);">Mobile Apps</span><span class="idx px-2">·</span>
 
     <span style="font-size:.65rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding:0 20px;color:rgba(255,255,255,.28);">IT Support</span><span class="idx px-2">·</span>
 
-    <span style="font-size:.65rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding:0 20px;color:rgba(15,127,121,.35);">Software Development</span><span class="idx px-2">·</span>
+    <span style="font-size:.65rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding:0 20px;color:rgba(0,72,196,.35);">Software Development</span><span class="idx px-2">·</span>
 
     <span style="font-size:.65rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding:0 20px;color:rgba(255,255,255,.32);">ERP Systems</span><span class="idx px-2">·</span>
 
-    <span style="font-size:.65rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding:0 20px;color:rgba(21,161,154,.35);">SaaS Solutions</span><span class="idx px-2">·</span>
+    <span style="font-size:.65rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding:0 20px;color:rgba(0,93,253,.35);">SaaS Solutions</span><span class="idx px-2">·</span>
 
     <span style="font-size:.65rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding:0 20px;color:rgba(255,255,255,.30);">Web Applications</span><span class="idx px-2">·</span>
 
-    <span style="font-size:.65rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding:0 20px;color:rgba(15,127,121,.35);">Mobile Apps</span><span class="idx px-2">·</span>
+    <span style="font-size:.65rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding:0 20px;color:rgba(0,72,196,.35);">Mobile Apps</span><span class="idx px-2">·</span>
 
     <span style="font-size:.65rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding:0 20px;color:rgba(255,255,255,.28);">IT Support</span><span class="idx px-2">·</span>
 
@@ -1716,7 +1720,7 @@
             <div class="img-curtain-l" style="position:absolute;top:0;left:0;width:50%;height:100%;background:#060608;z-index:4;"></div>
             <div class="img-curtain-r" style="position:absolute;top:0;left:50%;width:50%;height:100%;background:#060608;z-index:4;"></div>
           </div>
-          <div style="position:absolute;top:-14px;right:-14px;width:64px;height:64px;border:1px solid rgba(26,143,227,.22);border-radius:2px;"></div>
+          <div style="position:absolute;top:-14px;right:-14px;width:64px;height:64px;border:1px solid rgba(77,141,255,.22);border-radius:2px;"></div>
           <div style="position:absolute;bottom:-14px;left:-14px;width:44px;height:44px;border:1px solid rgba(224,32,32,.18);border-radius:2px;"></div>
         </div>
       </div>
@@ -1748,7 +1752,7 @@
   <div class="max-w-5xl mx-auto text-center">
     <p class="idx mb-5 r-up">007 · PHILOSOPHY</p>
     <blockquote class="font-serif italic text-2xl sm:text-3xl md:text-5xl text-white/65 r-up" style="line-height:1.25;">
-      "<span style="color:#15a19a;">Perfection</span> is achieved not when there is nothing more to add, but when there is nothing left to take away."
+      "<span style="color:#005dfd;">Perfection</span> is achieved not when there is nothing more to add, but when there is nothing left to take away."
     </blockquote>
     <cite class="block mt-5 idx not-italic r-up">Antoine de Saint-Exupéry</cite>
   </div>
@@ -1815,9 +1819,9 @@
       </div>
 
       <div class="pi r-up" data-cat="graphics">
-        <div class="zoom-wrap" style="aspect-ratio:1/1;border-radius:3px;position:relative;overflow:hidden;background:#0d0d10;">
+        <div class="zoom-wrap" style="aspect-ratio:1/1;border-radius:3px;position:relative;overflow:hidden;background:#fff;">
           <div class="inner w-full h-full">
-            <img src="images/projects/logo.png" alt="Logo Design" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:top;" />
+            <img src="images/projects/logo.png" alt="Logo Design" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;padding:12%;" />
           </div>
           <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 55%);border-radius:3px;pointer-events:none;"></div>
           <div style="position:absolute;bottom:10px;left:10px;"><span class="tag" style="font-size:.58rem;padding:2px 7px;">Graphics</span><p class="text-white font-bold text-xs mt-1">Logo Design</p></div>
@@ -1847,7 +1851,7 @@
       </div>
 
       <div class="pi r-up" data-cat="techsupport">
-        <div class="zoom-wrap" style="aspect-ratio:1/1;background:linear-gradient(135deg,#0d100a,#181e10);border-radius:3px;position:relative;">
+        <div class="zoom-wrap" style="aspect-ratio:1/1;background:linear-gradient(135deg,#0a0d16,#101828);border-radius:3px;position:relative;">
           <div class="inner w-full h-full flex items-center justify-center" style="filter:grayscale(25%);">
             <img src="images/logo.png" alt="" loading="lazy" decoding="async" style="height:40px;opacity:.13;filter:saturate(.3);" />
           </div>
@@ -1936,7 +1940,7 @@
       </div>
       <div class="gallery-item zoom-wrap" style="border-radius:3px;overflow:hidden;background:linear-gradient(135deg,#0d0d10,#161620);position:relative;min-height:200px;">
         <div class="inner w-full h-full flex items-center justify-center" style="position:absolute;inset:0;">
-          <img src="images/projects/gallery-logo.png" alt="StarNabula logo" loading="lazy" decoding="async" style="width:74%;height:auto;max-height:70%;object-fit:contain;filter:drop-shadow(0 0 24px rgba(21,161,154,.4));" />
+          <img src="images/logo.png" alt="StarNabula logo" loading="lazy" decoding="async" style="width:74%;height:auto;max-height:70%;object-fit:contain;filter:drop-shadow(0 0 24px rgba(0,93,253,.4));" />
         </div>
       </div>
       <div class="gallery-item zoom-wrap gal-wide r-up" style="aspect-ratio:1000/707;border-radius:3px;overflow:hidden;background:#0d0d10;">
@@ -2043,7 +2047,7 @@
 
         <!-- Privacy consent -->
         <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;">
-          <input id="cf-consent" type="checkbox" style="margin-top:2px;accent-color:#15a19a;flex-shrink:0;" />
+          <input id="cf-consent" type="checkbox" style="margin-top:2px;accent-color:#005dfd;flex-shrink:0;" />
           <span style="font-size:.72rem;color:rgba(255,255,255,.38);line-height:1.6;">
             I have read and agree to the
             <a href="privacy-policy" style="color:rgba(255,255,255,.6);text-decoration:underline;text-underline-offset:2px;">Privacy Policy</a>.
@@ -2053,7 +2057,7 @@
         <span id="cf-err-consent" style="display:none;font-size:.67rem;color:#f87171;letter-spacing:.05em;margin-top:-10px;"></span>
 
         <!-- Status messages -->
-        <p id="form-success" style="display:none;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:#4ade80;">
+        <p id="form-success" style="display:none;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:#6ea3ff;">
           ✓ Message sent. We'll be in touch within 24 hrs.
         </p>
         <p id="form-error" style="display:none;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--red);">

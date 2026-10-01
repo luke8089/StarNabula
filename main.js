@@ -129,7 +129,7 @@ if (window.matchMedia('(pointer:fine)').matches) {
   document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
   (function t(){ rx+=(mx-rx)*.13; ry+=(my-ry)*.13; cur.style.cssText+=`;left:${mx}px;top:${my}px`; ring.style.cssText+=`;left:${rx}px;top:${ry}px`; requestAnimationFrame(t); })();
   document.querySelectorAll('a,button').forEach(el => {
-    el.addEventListener('mouseenter', ()=>{ ring.style.width='52px'; ring.style.height='52px'; ring.style.borderColor='rgba(26,143,227,.5)'; });
+    el.addEventListener('mouseenter', ()=>{ ring.style.width='52px'; ring.style.height='52px'; ring.style.borderColor='rgba(77,141,255,.5)'; });
     el.addEventListener('mouseleave', ()=>{ ring.style.width=''; ring.style.height=''; ring.style.borderColor=''; });
   });
 }

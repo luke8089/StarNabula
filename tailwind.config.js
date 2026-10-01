@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brand: { red: '#15a19a', blue: '#1a8fe3' },
+        brand: { red: '#005dfd', blue: '#4d8dff' },
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
