@@ -140,6 +140,35 @@ document.getElementById('footer-year').textContent = new Date().getFullYear();
 /* ── PROGRESS BAR ── */
 gsap.to('#progress',{ scaleX:1, ease:'none', scrollTrigger:{ scrub:.3, start:'top top', end:'bottom bottom' }});
 
+/* ── OUTLINE DRAWING ──
+   Returns a timeline that traces each SVG path's outline in
+   turn at a constant pen speed (path units per second). Paths must use
+   vector-effect:non-scaling-stroke, which measures dashes in screen px. */
+const reduceMotion = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+function drawOutlines(paths, speed, vars) {
+  paths = [...paths];
+  const tl = gsap.timeline(Object.assign({}, vars, {
+    /* drop the dash once drawn so a later resize can't clip the outline */
+    onComplete() {
+      gsap.set(paths, { clearProps:'strokeDasharray,strokeDashoffset' });
+      if (vars && vars.onComplete) vars.onComplete();
+    }
+  }));
+  paths.forEach(path => {
+    const scale = path.ownerSVGElement.getBoundingClientRect().height / 100;
+    const len   = path.getTotalLength();
+    /* +10%: the browser's screen-space length runs a little over
+       getTotalLength(), which otherwise leaves a stub where a closed
+       outline ends (= where it starts) */
+    const dash  = len * scale * 1.1 + 2;
+    /* start 1px into the gap: sitting exactly on the dash edge paints a dot */
+    gsap.set(path, { strokeDasharray:dash + ' ' + (dash + 2), strokeDashoffset:dash + 1 });
+    tl.to(path, { strokeDashoffset:0, duration:len / speed, ease:'none' });
+  });
+  return tl;
+}
+
 function boot() {
   setTimeout(startCreativeRoll, 1500);
 
@@ -158,34 +187,38 @@ function boot() {
     .fromTo(navLinks,  { opacity:0, y:-14 }, { opacity:1, y:0, duration:.55, stagger:.07 }, .1)
     .fromTo(navActions,{ opacity:0, x:18  }, { opacity:1, x:0, duration:.65 }, .1);
 
-  /* hero lines */
+  /* hero lines: STAR slides up, then a line draws N-A-B-U-L and the
+     swinging A; the A starts its pendulum once its outline is complete */
+  const swingA = () => {
+    gsap.timeline({ defaults:{ ease:'sine.inOut' } })
+      .to('#bridge-e', { rotation:  24, duration: 0.42, ease:'power2.out' })
+      .to('#bridge-e', { rotation: -17, duration: 1.05 })
+      .to('#bridge-e', { rotation:  13, duration: 1.05 })
+      .to('#bridge-e', { rotation:  -9, duration: 1.1  })
+      .to('#bridge-e', { rotation:   6, duration: 1.15 })
+      .to('#bridge-e', { rotation:  -4, duration: 1.2  })
+      .to('#bridge-e', { rotation:   2, duration: 1.3  })
+      .to('#bridge-e', { rotation:  -1, duration: 1.5  })
+      .to('#bridge-e', { rotation:   0, duration: 1.8, ease:'power1.out', onComplete: startEIdle });
+  };
   gsap.set('#bridge-e', { rotation: 0 });
-  gsap.timeline({ defaults:{ ease:'power4.out' }})
+  const heroTl = gsap.timeline({ defaults:{ ease:'power4.out' }})
     .fromTo('#hl1',
       { y:'110%' },
       { y:'0%', duration:1.1, ease:'power3.out' })
-    .fromTo('#hl2',
-      { clipPath:'inset(0 0 0 88%)', x:24 },
-      { clipPath:'inset(0 0 0 0%)',  x:0, duration:1.15, ease:'power3.out' },
-    '-=.7')
-    .add('bridgeRevealed')
-    .from('#hero-content .idx',{ opacity:0, y:24, stagger:.1, duration:.8 },'-=.4')
+    .add('hl2Start', '-=.7');
+  if (reduceMotion) {
+    heroTl.add(swingA, 'hl2Start+=0.5');
+  } else {
+    heroTl.add(drawOutlines(document.querySelectorAll('#hl2 path'), 1100), 'hl2Start')
+      .add(swingA, '>+0.05');
+  }
+  heroTl
+    .from('#hero-content .idx',{ opacity:0, y:24, stagger:.1, duration:.8 },'hl2Start+=0.75')
     .fromTo('#hero-tagline',
       { clipPath:'inset(0 100% 0 0)', opacity:1 },
       { clipPath:'inset(0 0% 0 0)',   duration:1.1, ease:'power2.inOut' },
-    '-=.5')
-    .add(() => {
-      gsap.timeline({ defaults:{ ease:'sine.inOut' } })
-        .to('#bridge-e', { rotation:  24, duration: 0.42, ease:'power2.out' })
-        .to('#bridge-e', { rotation: -17, duration: 1.05 })
-        .to('#bridge-e', { rotation:  13, duration: 1.05 })
-        .to('#bridge-e', { rotation:  -9, duration: 1.1  })
-        .to('#bridge-e', { rotation:   6, duration: 1.15 })
-        .to('#bridge-e', { rotation:  -4, duration: 1.2  })
-        .to('#bridge-e', { rotation:   2, duration: 1.3  })
-        .to('#bridge-e', { rotation:  -1, duration: 1.5  })
-        .to('#bridge-e', { rotation:   0, duration: 1.8, ease:'power1.out', onComplete: startEIdle });
-    }, 'bridgeRevealed+=0.05');
+    'hl2Start+=1.25');
 
   /* hero visual panel entry */
   gsap.fromTo('#hero-visual',
@@ -322,6 +355,12 @@ function boot() {
   gsap.utils.toArray('.svc-row').forEach((r,i) => gsap.fromTo(r,
     { opacity:0, x:-24 },
     { opacity:1, x:0, duration:.65, ease:'power3.out', delay:i*.07, scrollTrigger:{ trigger:r, start:'top 92%' }}));
+
+  /* service numbers: a line traces each digit's outline, 0 then 1 */
+  if (!reduceMotion) {
+    gsap.utils.toArray('.svc-num').forEach(num => drawOutlines(num.querySelectorAll('path'), 380,
+      { scrollTrigger:{ trigger:num, start:'top 88%' }, delay:.15 }));
+  }
 
   /* stat count-up */
   document.querySelectorAll('[data-count]').forEach(el => {

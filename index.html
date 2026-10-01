@@ -567,6 +567,13 @@
 
     /* hero title */
     .hero-title { font-size:clamp(2.4rem,12vw,13rem); font-weight:900; line-height:.88; letter-spacing:-.04em; user-select:none; -webkit-user-select:none; }
+    /* NABULA line: two SVGs sized in em so they keep the old text metrics
+       (1em glyph box trimmed to the .88 line height, .16em word space) */
+    #hl2 { display:flex; align-items:flex-start; }
+    #hl2 svg { display:block; height:1em; width:auto; margin-block:-.06em; overflow:visible; }
+    #hl2 #bridge-e { margin-left:.1592em; }
+    #hl2 path { fill:none; stroke:#005dfd; stroke-width:clamp(1px,.2vw,2px); vector-effect:non-scaling-stroke; }
+    .sr-only-text { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
 
     /* idx label */
     .idx { font-size:.68rem; letter-spacing:.18em; color:var(--muted-1); font-weight:600; text-transform:uppercase; }
@@ -581,8 +588,12 @@
     .svc-row { border-top:1px solid var(--border); transition:border-color .35s; }
     .svc-row:last-child { border-bottom:1px solid var(--border); }
     .svc-row:hover { border-color:var(--svc-stroke-h); }
-    .svc-num { font-size:clamp(1.6rem,7vw,6rem); font-weight:900; line-height:1; color:transparent; -webkit-text-stroke:1px #005dfd; transition:color .35s,-webkit-text-stroke .35s; }
-    .svc-row:hover .svc-num { -webkit-text-stroke-color:var(--svc-stroke-h); }
+    /* service numbers are Inter Black outlines as SVG paths, so JS can
+       draw each digit's line in turn (see "service numbers" in main.js) */
+    .svc-num { font-size:clamp(1.6rem,7vw,6rem); line-height:1; display:inline-flex; }
+    .svc-num svg { height:1em; width:auto; display:block; overflow:visible; }
+    .svc-num path { fill:none; stroke:#005dfd; stroke-width:1; vector-effect:non-scaling-stroke; transition:stroke .35s; }
+    .svc-row:hover .svc-num path { stroke:var(--svc-stroke-h); }
     .svc-arrow { transition:transform .4s cubic-bezier(.23,1,.32,1); }
     .svc-row:hover .svc-arrow { transform:rotate(0deg) !important; }
 
@@ -1190,13 +1201,17 @@
       </div>
 
       <div>
-        <span class="block"
-          id="hl2"
-          style="color:transparent;
-          -webkit-text-stroke:clamp(1px,.2vw,2px) #005dfd;">
-
-          NABUL
-
+        <!-- NABULA as Inter Black outline paths so JS can draw the letters
+             one by one; letter positions match the old text layout -->
+        <span class="block" id="hl2">
+          <span class="sr-only-text">NABULA</span>
+          <svg class="hl2-word" viewBox="0 0 331.96 100" aria-hidden="true">
+            <path d="M4.7 86.4V13.6H26.2L43.5 42.2Q45.8 45.9 47.7 49.6Q49.7 53.3 51.5 57.8Q53.3 62.3 55.2 68.2H53.5Q53.3 64.3 52.9 59.1Q52.5 53.9 52.2 48.8Q52 43.8 52 40.3V13.6H72.3V86.4H50.8L34.6 59.8Q31.9 55.3 29.8 51.3Q27.7 47.4 25.8 43Q23.9 38.6 21.4 32.9H23.4Q23.8 38 24.2 43.1Q24.6 48.1 24.8 52.5Q25 56.8 25 59.8V86.4Z"/>
+            <path transform="translate(72.95 0)" d="M2.2 86.4 25.8 13.6H52.8L77.2 86.4H54.9L46.4 58.2Q43.7 49 41.3 39.1Q38.9 29.2 36.8 19.4H41.3Q39.2 29.2 37.1 39.1Q35 49 32.4 58.2L24.3 86.4ZM19.7 72.4V57.7H59.8V72.4Z"/>
+            <path transform="translate(148.44 0)" d="M4.7 86.4V13.6H36.2Q44.5 13.6 50.2 15.9Q55.9 18.1 58.7 22.2Q61.6 26.3 61.6 31.8Q61.6 35.8 59.9 39.1Q58.1 42.4 55 44.7Q51.8 46.9 47.6 47.7V48.5Q52.2 48.6 56.1 50.8Q59.9 53 62.2 56.8Q64.5 60.6 64.5 65.8Q64.5 71.7 61.4 76.4Q58.3 81.1 52.6 83.7Q46.9 86.4 39 86.4ZM24.4 70.7H33.7Q38.6 70.7 41.1 68.8Q43.7 66.8 43.7 63.2Q43.7 60.6 42.5 58.9Q41.3 57.1 39.1 56.2Q37 55.2 34 55.2H24.4ZM24.4 43H32.5Q35.1 43 37.1 42.2Q39.1 41.4 40.2 39.9Q41.3 38.3 41.3 36.1Q41.3 32.8 38.9 31Q36.5 29.2 32.8 29.2H24.4Z"/>
+            <path transform="translate(211.23 0)" d="M36 87.3Q26.7 87.3 19.6 84Q12.5 80.7 8.6 74.6Q4.7 68.5 4.7 60.2V13.6H24.4V58.5Q24.4 62 25.9 64.6Q27.4 67.2 30.1 68.7Q32.7 70.2 36 70.2Q39.5 70.2 42.1 68.7Q44.7 67.2 46.2 64.6Q47.8 62 47.8 58.5V13.6H67.5V60.2Q67.5 68.5 63.5 74.6Q59.6 80.7 52.5 84Q45.4 87.3 36 87.3Z"/>
+            <path transform="translate(279.41 0)" d="M4.7 86.4V13.6H24.4V70.5H53.8V86.4Z"/>
+          </svg>
           <span id="bridge-e"
             style="display:inline-block;
             transform-origin:50% 0%;
@@ -1204,9 +1219,9 @@
             cursor:pointer;
             position:relative;
             z-index:50;">
-
-            A
-
+            <svg viewBox="0 0 75.5 100" aria-hidden="true">
+              <path d="M2.2 86.4 25.8 13.6H52.8L77.2 86.4H54.9L46.4 58.2Q43.7 49 41.3 39.1Q38.9 29.2 36.8 19.4H41.3Q39.2 29.2 37.1 39.1Q35 49 32.4 58.2L24.3 86.4ZM19.7 72.4V57.7H59.8V72.4Z"/>
+            </svg>
           </span>
         </span>
       </div>
@@ -1320,7 +1335,7 @@
       <div class="flex items-center justify-between gap-4">
 
         <div class="flex items-center gap-4 md:gap-10 min-w-0">
-          <span class="svc-num flex-shrink-0">01</span>
+          <span class="svc-num flex-shrink-0" role="img" aria-label="01"><svg viewBox="0 0 116.3 100" aria-hidden="true"><path d="M35.5 87.4Q25.4 87.4 18.3 82.9Q11.1 78.5 7.3 70.1Q3.4 61.8 3.4 50Q3.4 38.3 7.3 29.9Q11.1 21.5 18.3 17.1Q25.4 12.6 35.5 12.6Q45.7 12.6 52.9 17.1Q60.1 21.6 63.9 29.9Q67.7 38.3 67.7 50Q67.7 61.8 63.9 70.1Q60.1 78.5 52.9 82.9Q45.7 87.4 35.5 87.4ZM35.5 71.3Q39.3 71.3 41.9 68.9Q44.5 66.5 45.8 61.7Q47.2 56.9 47.2 50Q47.2 43.1 45.8 38.3Q44.5 33.5 41.9 31.1Q39.3 28.6 35.5 28.6Q31.8 28.6 29.2 31.1Q26.6 33.5 25.3 38.3Q23.9 43.1 23.9 50Q23.9 56.9 25.2 61.7Q26.6 66.5 29.2 68.9Q31.8 71.3 35.5 71.3Z"/><path transform="translate(71.1 0)" d="M40.5 13.6V86.4H20.8V30.6H20.3L4.4 41.4V24.6L20.7 13.6Z"/></svg></span>
           <div class="min-w-0">
             <p class="idx mb-1">MOD I</p>
             <h3 class="text-lg sm:text-2xl md:text-3xl font-bold tracking-tight truncate">
@@ -1368,7 +1383,7 @@
       <div class="flex items-center justify-between gap-4">
 
         <div class="flex items-center gap-4 md:gap-10 min-w-0">
-          <span class="svc-num flex-shrink-0">02</span>
+          <span class="svc-num flex-shrink-0" role="img" aria-label="02"><svg viewBox="0 0 135.7 100" aria-hidden="true"><path d="M35.5 87.4Q25.4 87.4 18.3 82.9Q11.1 78.5 7.3 70.1Q3.4 61.8 3.4 50Q3.4 38.3 7.3 29.9Q11.1 21.5 18.3 17.1Q25.4 12.6 35.5 12.6Q45.7 12.6 52.9 17.1Q60.1 21.6 63.9 29.9Q67.7 38.3 67.7 50Q67.7 61.8 63.9 70.1Q60.1 78.5 52.9 82.9Q45.7 87.4 35.5 87.4ZM35.5 71.3Q39.3 71.3 41.9 68.9Q44.5 66.5 45.8 61.7Q47.2 56.9 47.2 50Q47.2 43.1 45.8 38.3Q44.5 33.5 41.9 31.1Q39.3 28.6 35.5 28.6Q31.8 28.6 29.2 31.1Q26.6 33.5 25.3 38.3Q23.9 43.1 23.9 50Q23.9 56.9 25.2 61.7Q26.6 66.5 29.2 68.9Q31.8 71.3 35.5 71.3Z"/><path transform="translate(71.1 0)" d="M4.8 86.4V72.2L31.9 49.8Q34.6 47.5 36.6 45.5Q38.5 43.6 39.6 41.5Q40.6 39.4 40.6 36.8Q40.6 34 39.4 32Q38.2 30 36.2 29Q34.1 27.9 31.3 27.9Q28.6 27.9 26.5 29Q24.5 30.1 23.3 32.2Q22.2 34.3 22.2 37.4H3.4Q3.4 29.7 6.9 24.2Q10.3 18.7 16.6 15.6Q22.9 12.6 31.3 12.6Q40.1 12.6 46.5 15.4Q52.9 18.2 56.4 23.3Q59.9 28.3 59.9 35.1Q59.9 39.3 58.1 43.4Q56.4 47.6 51.9 52.6Q47.4 57.6 39.1 64.5L32.2 70.2V70.7H60.6V86.4Z"/></svg></span>
           <div class="min-w-0">
             <p class="idx mb-1">MOD II</p>
             <h3 class="text-lg sm:text-2xl md:text-3xl font-bold tracking-tight truncate">
@@ -1416,7 +1431,7 @@
       <div class="flex items-center justify-between gap-4">
 
         <div class="flex items-center gap-4 md:gap-10 min-w-0">
-          <span class="svc-num flex-shrink-0">03</span>
+          <span class="svc-num flex-shrink-0" role="img" aria-label="03"><svg viewBox="0 0 138.0 100" aria-hidden="true"><path d="M35.5 87.4Q25.4 87.4 18.3 82.9Q11.1 78.5 7.3 70.1Q3.4 61.8 3.4 50Q3.4 38.3 7.3 29.9Q11.1 21.5 18.3 17.1Q25.4 12.6 35.5 12.6Q45.7 12.6 52.9 17.1Q60.1 21.6 63.9 29.9Q67.7 38.3 67.7 50Q67.7 61.8 63.9 70.1Q60.1 78.5 52.9 82.9Q45.7 87.4 35.5 87.4ZM35.5 71.3Q39.3 71.3 41.9 68.9Q44.5 66.5 45.8 61.7Q47.2 56.9 47.2 50Q47.2 43.1 45.8 38.3Q44.5 33.5 41.9 31.1Q39.3 28.6 35.5 28.6Q31.8 28.6 29.2 31.1Q26.6 33.5 25.3 38.3Q23.9 43.1 23.9 50Q23.9 56.9 25.2 61.7Q26.6 66.5 29.2 68.9Q31.8 71.3 35.5 71.3Z"/><path transform="translate(71.1 0)" d="M33.2 87.4Q24.6 87.4 17.9 84.4Q11.3 81.4 7.5 76.2Q3.7 71 3.7 64.2H23.5Q23.5 66.3 24.8 67.9Q26.1 69.6 28.3 70.5Q30.6 71.4 33.4 71.4Q36.1 71.4 38.2 70.5Q40.3 69.5 41.4 67.8Q42.6 66.1 42.6 63.8Q42.6 61.6 41.2 59.9Q39.9 58.2 37.5 57.3Q35.1 56.3 31.8 56.3H24.4V42.6H31.8Q34.8 42.6 37 41.7Q39.3 40.7 40.5 39Q41.8 37.3 41.8 35.1Q41.8 33 40.7 31.3Q39.6 29.7 37.8 28.8Q35.9 27.9 33.4 27.9Q30.7 27.9 28.5 28.8Q26.4 29.8 25.2 31.5Q24 33.2 24 35.4H5.1Q5.1 28.7 8.7 23.6Q12.4 18.5 18.8 15.6Q25.1 12.6 33.4 12.6Q41.5 12.6 47.7 15.4Q53.9 18.1 57.3 22.9Q60.8 27.7 60.8 33.8Q60.8 39.9 56.6 43.8Q52.4 47.8 45.9 48.5V49Q51.8 49.6 55.7 51.8Q59.6 54.1 61.5 57.5Q63.5 61 63.5 65.5Q63.5 71.9 59.6 76.8Q55.8 81.8 49 84.6Q42.1 87.4 33.2 87.4Z"/></svg></span>
           <div class="min-w-0">
             <p class="idx mb-1">MOD III</p>
             <h3 class="text-lg sm:text-2xl md:text-3xl font-bold tracking-tight truncate">
@@ -1464,7 +1479,7 @@
       <div class="flex items-center justify-between gap-4">
 
         <div class="flex items-center gap-4 md:gap-10 min-w-0">
-          <span class="svc-num flex-shrink-0">04</span>
+          <span class="svc-num flex-shrink-0" role="img" aria-label="04"><svg viewBox="0 0 141.3 100" aria-hidden="true"><path d="M35.5 87.4Q25.4 87.4 18.3 82.9Q11.1 78.5 7.3 70.1Q3.4 61.8 3.4 50Q3.4 38.3 7.3 29.9Q11.1 21.5 18.3 17.1Q25.4 12.6 35.5 12.6Q45.7 12.6 52.9 17.1Q60.1 21.6 63.9 29.9Q67.7 38.3 67.7 50Q67.7 61.8 63.9 70.1Q60.1 78.5 52.9 82.9Q45.7 87.4 35.5 87.4ZM35.5 71.3Q39.3 71.3 41.9 68.9Q44.5 66.5 45.8 61.7Q47.2 56.9 47.2 50Q47.2 43.1 45.8 38.3Q44.5 33.5 41.9 31.1Q39.3 28.6 35.5 28.6Q31.8 28.6 29.2 31.1Q26.6 33.5 25.3 38.3Q23.9 43.1 23.9 50Q23.9 56.9 25.2 61.7Q26.6 66.5 29.2 68.9Q31.8 71.3 35.5 71.3Z"/><path transform="translate(71.1 0)" d="M4.1 75V59.7L33.4 13.6H47.3V34.1H39.4L23.5 59.1V59.7H66.8V75ZM39.5 86.4V70.4L39.9 63.6V13.6H58.4V86.4Z"/></svg></span>
           <div class="min-w-0">
             <p class="idx mb-1">MOD IV</p>
             <h3 class="text-lg sm:text-2xl md:text-3xl font-bold tracking-tight truncate">
@@ -1512,7 +1527,7 @@
       <div class="flex items-center justify-between gap-4">
 
         <div class="flex items-center gap-4 md:gap-10 min-w-0">
-          <span class="svc-num flex-shrink-0">05</span>
+          <span class="svc-num flex-shrink-0" role="img" aria-label="05"><svg viewBox="0 0 135.7 100" aria-hidden="true"><path d="M35.5 87.4Q25.4 87.4 18.3 82.9Q11.1 78.5 7.3 70.1Q3.4 61.8 3.4 50Q3.4 38.3 7.3 29.9Q11.1 21.5 18.3 17.1Q25.4 12.6 35.5 12.6Q45.7 12.6 52.9 17.1Q60.1 21.6 63.9 29.9Q67.7 38.3 67.7 50Q67.7 61.8 63.9 70.1Q60.1 78.5 52.9 82.9Q45.7 87.4 35.5 87.4ZM35.5 71.3Q39.3 71.3 41.9 68.9Q44.5 66.5 45.8 61.7Q47.2 56.9 47.2 50Q47.2 43.1 45.8 38.3Q44.5 33.5 41.9 31.1Q39.3 28.6 35.5 28.6Q31.8 28.6 29.2 31.1Q26.6 33.5 25.3 38.3Q23.9 43.1 23.9 50Q23.9 56.9 25.2 61.7Q26.6 66.5 29.2 68.9Q31.8 71.3 35.5 71.3Z"/><path transform="translate(71.1 0)" d="M32 87.4Q23.6 87.4 17.1 84.4Q10.6 81.4 6.9 76.2Q3.2 71 3.1 64.2H22.4Q22.4 66.7 23.7 68.6Q25 70.4 27.2 71.4Q29.4 72.4 32 72.4Q35.1 72.4 37.3 71.1Q39.6 69.8 40.9 67.5Q42.2 65.1 42.2 62Q42.2 58.7 40.9 56.4Q39.6 54 37.3 52.7Q35.1 51.4 32 51.4Q28.9 51.4 26.2 52.9Q23.6 54.4 22.4 57.1L5 53.7L7.8 13.6H56.7V29.4H24L22.7 45.5H23Q24.8 42.1 29 40Q33.2 37.8 38.7 37.8Q43.5 37.8 47.6 39.6Q51.8 41.3 54.8 44.4Q57.9 47.6 59.5 51.9Q61.2 56.2 61.2 61.4Q61.2 69 57.6 74.9Q54 80.7 47.4 84Q40.9 87.4 32 87.4Z"/></svg></span>
           <div class="min-w-0">
             <p class="idx mb-1">MOD V</p>
             <h3 class="text-lg sm:text-2xl md:text-3xl font-bold tracking-tight truncate">
@@ -2186,6 +2201,6 @@
   }
 })();
 </script>
-<script src="main.js?v=6" defer></script>
+<script src="main.js?v=8" defer></script>
 </body>
 </html>
